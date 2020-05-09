@@ -27,7 +27,7 @@ from frtls.templating import replace_strings_in_obj
 from frtls.types.plugins import TypistryPluginManager
 from frtls.types.utils import generate_valid_identifier
 from tings.defaults import NO_VALUE_MARKER
-from tings.ting import SimpleTing
+from tings.ting import SimpleTing, TingMeta
 from tings.tingistry import Tingistry
 
 
@@ -94,13 +94,11 @@ class Mogrifier(Task, SimpleTing):
 
     _plugin_type = "instance"
 
-    def __init__(
-        self, name: str, meta: Optional[Mapping[str, Any]] = None, **kwargs
-    ) -> None:
+    def __init__(self, name: str, meta: TingMeta, **kwargs) -> None:
 
         self._mogrify_result: Optional[Mapping[str, Any]] = None
 
-        self._tingistry_obj: Tingistry = meta["tingistry"]  # type: ignore
+        self._tingistry_obj: Tingistry = meta.tingistry
 
         self._working_dir: Optional[str] = None
         SimpleTing.__init__(self, name=name, meta=meta)
@@ -171,7 +169,7 @@ class Mogrifier(Task, SimpleTing):
 
 
 class SimpleMogrifier(Mogrifier):
-    def __init__(self, name: str, meta: Optional[Mapping[str, Any]], **kwargs):
+    def __init__(self, name: str, meta: TingMeta, **kwargs):
 
         Mogrifier.__init__(self, name=name, meta=meta)
         # SingleTaskAsync.__init__(self, self.get_values, **kwargs)
@@ -346,14 +344,9 @@ class Transmogritory(SimpleTing):
     """Registry that holds all mogrify plugins.
     """
 
-    def __init__(
-        self,
-        name: str,
-        _load_plugins_at_init: bool = True,
-        meta: Optional[Mapping[str, Any]] = None,
-    ):
+    def __init__(self, name: str, meta: TingMeta, _load_plugins_at_init: bool = True):
 
-        self._tingistry_obj: Tingistry = meta["tingistry"]  # type: ignore
+        self._tingistry_obj: Tingistry = meta.tingistry
         self._plugin_manager: Optional[TypistryPluginManager] = None
 
         super().__init__(name=name, meta=meta)

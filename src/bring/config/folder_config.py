@@ -5,7 +5,7 @@ import anyio
 from anyio import create_task_group
 from bring.config import ConfigTing
 from tings.makers.file import TextFileTingMaker
-from tings.ting import SimpleTing
+from tings.ting import SimpleTing, TingMeta
 from tings.ting.tings import SubscripTings
 from tings.tingistry import Tingistry
 
@@ -14,17 +14,13 @@ class FolderConfigProfilesTing(SimpleTing):
     def __init__(
         self,
         name: str,
+        meta: TingMeta,
         config_path: str,
         config_file_ext: str = "config",
-        meta: Optional[Mapping[str, Any]] = None,
     ):
         """A class to hold a set of ConfigTings, and gives access to them and their config dicts."""
 
-        if meta is None:
-            raise Exception(
-                "Can't create ting FolderConfigProfilesTing, 'meta' parameter not provided. This is a bug."
-            )
-        self._tingistry_obj: Tingistry = meta["tingistry"]
+        self._tingistry_obj: Tingistry = meta.tingistry
 
         self._config_path = config_path
         self._config_file_ext = config_file_ext
