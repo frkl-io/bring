@@ -106,7 +106,7 @@ class BringStaticIndexTing(BringIndexTing):
                     )
                     ting.bring_index = self
 
-                ting.input.set_values(**pkg_data)
+                ting.set_input(**pkg_data)
                 # ting._set_result(data)
                 pkgs[pkg_name] = ting
 

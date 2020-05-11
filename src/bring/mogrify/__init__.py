@@ -138,7 +138,7 @@ class Mogrifier(Task, SimpleTing):
 
         return self._mogrify_result
 
-    def requires(self) -> Mapping[str, str]:
+    def requires(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         if not hasattr(self.__class__, "_requires"):
             raise FrklException(
@@ -148,7 +148,7 @@ class Mogrifier(Task, SimpleTing):
 
         return self.__class__._requires  # type: ignore
 
-    def provides(self) -> Mapping[str, str]:
+    def provides(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         if not hasattr(self.__class__, "_provides"):
             raise FrklException(
@@ -185,7 +185,7 @@ class SimpleMogrifier(Mogrifier):
     def input_values(self):
 
         result = {}
-        for k, v in self.input._values.items():
+        for k, v in self.current_input.items():
             if v != NO_VALUE_MARKER:
                 result[k] = v
 
@@ -281,7 +281,7 @@ class Transmogrificator(Tasks):
             )  # type: ignore
             if self._result_mogrifier is None:
                 raise Exception("Could not create result mogrifier.")
-            self._result_mogrifier.input.set_values(**self._target_spec)  # type: ignore
+            self._result_mogrifier.set_input(**self._target_spec)  # type: ignore
             msg = self._result_mogrifier.get_msg()
             td = BringTaskDesc(name="merge_result", msg=msg)
             self._result_mogrifier.task_desc = td
@@ -353,12 +353,12 @@ class Transmogritory(SimpleTing):
         if _load_plugins_at_init:
             self.plugin_manager  # noqa
 
-    def provides(self) -> Mapping[str, str]:
+    def provides(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         # TODO: make a real 'ting' out of this, probably not necessary though, it's really just a tingistry-global object
         return {}
 
-    def requires(self) -> Mapping[str, str]:
+    def requires(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         return {}
 
@@ -400,7 +400,7 @@ class Transmogritory(SimpleTing):
             prototing=f"bring.mogrify.plugins.{mogrify_plugin}",
             ting_name=f"bring.mogrify.pipelines.{pipeline_id}.{mogrify_plugin}_{index}",
         )
-        ting.input.set_values(**input_vals)
+        ting.set_input(**input_vals)
         msg = ting.get_msg()
         td = BringTaskDesc(name=mogrify_plugin, msg=msg)
         ting.task_desc = td
@@ -433,12 +433,14 @@ class Transmogritory(SimpleTing):
             target=target,
             **kwargs,
         )
+
         for index, _mog in enumerate(mogrifier_list):
 
             if isinstance(_mog, collections.Mapping):
 
                 vals = dict(_mog)
                 mogrify_plugin: Optional[str] = vals.pop("type", None)
+                vals.pop("_task_desc")
                 if not mogrify_plugin:
                     raise FrklException(
                         msg="Can't create transmogrificator.",
@@ -449,7 +451,7 @@ class Transmogritory(SimpleTing):
                     mogrify_plugin=mogrify_plugin,
                     pipeline_id=pipeline_id,
                     index=str(index),
-                    input_vals=_mog,
+                    input_vals=vals,
                     vars=vars,
                 )
 

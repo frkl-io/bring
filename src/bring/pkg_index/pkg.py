@@ -367,7 +367,7 @@ class PkgTing(SimpleTing):
 
 
 class StaticPkgTing(PkgTing):
-    def __init__(self, name, meta: Dict[str, Any]):
+    def __init__(self, name, meta: TingMeta):
 
         super().__init__(name=name, meta=meta)
 
@@ -414,7 +414,7 @@ class StaticPkgTing(PkgTing):
 
 
 class DynamicPkgTing(PkgTing):
-    def __init__(self, name, meta: Dict[str, Any]):
+    def __init__(self, name, meta: TingMeta):
 
         super().__init__(name=name, meta=meta)
 

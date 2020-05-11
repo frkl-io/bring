@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Dict, Mapping, MutableMapping, Optional
+from typing import Any, Dict, Mapping, MutableMapping, Optional, Union
 
 import anyio
 from anyio import create_task_group
@@ -50,11 +50,11 @@ class FolderConfigProfilesTing(SimpleTing):
             self._init_lock = anyio.create_lock()
         return self._init_lock
 
-    def requires(self) -> Mapping[str, str]:
+    def requires(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         return {}
 
-    def provides(self) -> Mapping[str, str]:
+    def provides(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         return {"profiles": "dict", "config_dicts": "dict"}
 

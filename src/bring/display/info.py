@@ -340,10 +340,6 @@ class PkgInfoDisplay(object):
 
         info_data = wrap_async_task(self.retrieve_info)
 
-        import pp
-
-        pp(info_data)
-
         _info_data = info_data["info"]
         _info_data["labels"] = info_data["labels"]
         _info_data["tags"] = info_data["tags"]

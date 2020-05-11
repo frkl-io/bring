@@ -126,11 +126,11 @@ class Bring(SimpleTing):
 
         return self._tingistry_obj.arg_hive
 
-    def provides(self) -> Mapping[str, str]:
+    def provides(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         return {}
 
-    def requires(self) -> Mapping[str, str]:
+    def requires(self) -> Mapping[str, Union[str, Mapping[str, Any]]]:
 
         return {}
 
