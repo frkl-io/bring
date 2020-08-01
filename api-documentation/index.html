@@ -718,8 +718,37 @@ tags exist, to the 'master' branch.</p>
 
 <p>Extra format methods for multi methods that adds all the commands
 after the options.</p>
-<p><a name="bring.interfaces.cli.export_index"></a></p>
-<h1 id="bringinterfacescliexport_index">bring.interfaces.cli.export_index<a class="headerlink" href="#bringinterfacescliexport_index" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands"></a></p>
+<h1 id="bringinterfacesclicommands">bring.interfaces.cli.commands<a class="headerlink" href="#bringinterfacesclicommands" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.export_index"></a></p>
+<h1 id="bringinterfacesclicommandsexport_index">bring.interfaces.cli.commands.export_index<a class="headerlink" href="#bringinterfacesclicommandsexport_index" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.install"></a></p>
+<h1 id="bringinterfacesclicommandsinstall">bring.interfaces.cli.commands.install<a class="headerlink" href="#bringinterfacesclicommandsinstall" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.install.BringInstallGroup"></a></p>
+<h2 id="bringinstallgroup-objects">BringInstallGroup Objects<a class="headerlink" href="#bringinstallgroup-objects" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringInstallGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p><a name="bring.interfaces.cli.commands.install.BringInstallGroup.__init__"></a></p>
+<h4 id="__init___1">__init__<a class="headerlink" href="#__init___1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Install</p>
+<p><a name="bring.interfaces.cli.commands.install.BringInstallGroup.format_commands"></a></p>
+<h4 id="format_commands_1">format_commands<a class="headerlink" href="#format_commands_1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Extra format methods for multi methods that adds all the commands
+after the options.</p>
+<p><a name="bring.interfaces.cli.commands.explain"></a></p>
+<h1 id="bringinterfacesclicommandsexplain">bring.interfaces.cli.commands.explain<a class="headerlink" href="#bringinterfacesclicommandsexplain" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.update"></a></p>
+<h1 id="bringinterfacesclicommandsupdate">bring.interfaces.cli.commands.update<a class="headerlink" href="#bringinterfacesclicommandsupdate" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.utils"></a></p>
 <h1 id="bringinterfacescliutils">bring.interfaces.cli.utils<a class="headerlink" href="#bringinterfacescliutils" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.utils.create_pkg_list_for_help"></a></p>
@@ -732,29 +761,6 @@ after the options.</p>
 after the options.</p>
 <p><a name="bring.interfaces.cli.command_group"></a></p>
 <h1 id="bringinterfacesclicommand_group">bring.interfaces.cli.command_group<a class="headerlink" href="#bringinterfacesclicommand_group" title="Permanent link">&para;</a></h1>
-<p><a name="bring.interfaces.cli.install"></a></p>
-<h1 id="bringinterfacescliinstall">bring.interfaces.cli.install<a class="headerlink" href="#bringinterfacescliinstall" title="Permanent link">&para;</a></h1>
-<p><a name="bring.interfaces.cli.install.BringInstallGroup"></a></p>
-<h2 id="bringinstallgroup-objects">BringInstallGroup Objects<a class="headerlink" href="#bringinstallgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringInstallGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p><a name="bring.interfaces.cli.install.BringInstallGroup.__init__"></a></p>
-<h4 id="__init___1">__init__<a class="headerlink" href="#__init___1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>Install</p>
-<p><a name="bring.interfaces.cli.install.BringInstallGroup.format_commands"></a></p>
-<h4 id="format_commands_1">format_commands<a class="headerlink" href="#format_commands_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>Extra format methods for multi methods that adds all the commands
-after the options.</p>
 <p><a name="bring.interfaces.cli.cli"></a></p>
 <h1 id="bringinterfacesclicli">bring.interfaces.cli.cli<a class="headerlink" href="#bringinterfacesclicli" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.differ"></a></p>
@@ -793,8 +799,6 @@ after the options.</p>
 
 
 <p>Install</p>
-<p><a name="bring.interfaces.cli.explain"></a></p>
-<h1 id="bringinterfacescliexplain">bring.interfaces.cli.explain<a class="headerlink" href="#bringinterfacescliexplain" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.config"></a></p>
 <h1 id="bringinterfacescliconfig">bring.interfaces.cli.config<a class="headerlink" href="#bringinterfacescliconfig" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.config.BringContextGroup"></a></p>
@@ -825,8 +829,6 @@ after the options.</p>
 <p>Install</p>
 <p><a name="bring.interfaces.cli.process"></a></p>
 <h1 id="bringinterfacescliprocess">bring.interfaces.cli.process<a class="headerlink" href="#bringinterfacescliprocess" title="Permanent link">&para;</a></h1>
-<p><a name="bring.interfaces.cli.update"></a></p>
-<h1 id="bringinterfacescliupdate">bring.interfaces.cli.update<a class="headerlink" href="#bringinterfacescliupdate" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.plugin"></a></p>
 <h1 id="bringinterfacescliplugin">bring.interfaces.cli.plugin<a class="headerlink" href="#bringinterfacescliplugin" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.plugin.plugin"></a></p>
