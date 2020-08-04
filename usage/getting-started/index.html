@@ -327,11 +327,30 @@
                 
                 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>The <code>bring</code> command-line interface is designed to be (mostly) self explanatory. Use the <code>--help</code> option to see available sub-commands and their options and general usage instructions.</p>
-<div class="codehilite"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;--help&#39;)&#39; returned non-zero exit
-       status 1.
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;</span> bring --help
+<span class="go">Usage: bring [OPTIONS] COMMAND [ARGS]...</span>
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;--help&#39;)&#39; returned non-zero exit status 1.
+<span class="go">  &#39;bring&#39; is a package manager for files and file-sets.</span>
+
+<span class="go">  &#39;bring&#39;-managed files that are part of so called &#39;indexes&#39;: collections of</span>
+<span class="go">  metadata items, each describing one specific file or file-set.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --verbosity LEVEL  The log level: CRITICAL, ERROR, WARNING, INFO, DEBUG</span>
+<span class="go">  -o, --output TEXT  which output plugins to use, defaults to &#39;terminal&#39;</span>
+<span class="go">  -i, --index TEXT   one or several profile index(s), overwrites indexes in</span>
+<span class="go">                     configuration</span>
+<span class="go">  -c, --config TEXT  configuration option(s) and/or profile name(s)</span>
+<span class="go">  -h, --help         Show this message and exit.</span>
+
+<span class="go">Commands:</span>
+<span class="go">  install       install one or a list of packages</span>
+<span class="go">  explain       display context, index, pkg, or target information</span>
+<span class="go">  list          list packages for all registered indexes</span>
+<span class="go">  update        update index metadata</span>
+<span class="go">  export-index  export index folder metadata to file</span>
+<span class="go">  doc           documentation for application components</span>
+<span class="go">  self          utilites to manage/display info about this application</span>
 </code></pre></div>
                 
               
