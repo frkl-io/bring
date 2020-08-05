@@ -23,6 +23,8 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.947af8d5.min.css">
       
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7f672a1f.min.css">
+      
       
     
     
@@ -44,7 +46,10 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -338,9 +343,8 @@
 <h1 id="bringutils">bring.utils<a class="headerlink" href="#bringutils" title="Permanent link">&para;</a></h1>
 <p><a name="bring.utils.find_version"></a></p>
 <h4 id="find_version">find_version<a class="headerlink" href="#find_version" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">find_version</span><span class="p">(</span><span class="nb">vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">PkgMetadata</span><span class="p">,</span> <span class="n">var_aliases_replaced</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="n">find_version</span><span class="p">(</span><span class="nb">vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">PkgMetadata</span><span class="p">,</span> <span class="n">var_aliases_replaced</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Return details about one version item of a package, using the provided vars to find one (or the first) version that matches most/all of the provided vars.</p>
 <p><strong>Arguments</strong>:</p>
@@ -375,15 +379,13 @@
 <p>Main module.</p>
 <p><a name="bring.bring.Bring"></a></p>
 <h2 id="bring-objects">Bring Objects<a class="headerlink" href="#bring-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Bring</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Bring</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.bring.Bring.get_pkg_map"></a></p>
 <h4 id="get_pkg_map">get_pkg_map<a class="headerlink" href="#get_pkg_map" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_pkg_map</span><span class="p">(</span><span class="o">*</span><span class="n">indexes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PkgTing</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_pkg_map</span><span class="p">(</span><span class="o">*</span><span class="n">indexes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PkgTing</span><span class="p">]]</span>
 </code></pre></div>
-
 
 <p>Get all pkgs, per available (or requested) indexes.</p>
 <p><a name="bring.defaults"></a></p>
@@ -400,9 +402,8 @@
 <h1 id="bringpkg_indexutils">bring.pkg_index.utils<a class="headerlink" href="#bringpkg_indexutils" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_index.utils.diff_packages"></a></p>
 <h4 id="diff_packages">diff_packages<a class="headerlink" href="#diff_packages" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="n">diff_packages</span><span class="p">(</span><span class="n">index_orig</span><span class="p">:</span> <span class="n">BringIndexTing</span><span class="p">,</span> <span class="n">index_new</span><span class="p">:</span> <span class="n">BringIndexTing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="n">diff_packages</span><span class="p">(</span><span class="n">index_orig</span><span class="p">:</span> <span class="n">BringIndexTing</span><span class="p">,</span> <span class="n">index_new</span><span class="p">:</span> <span class="n">BringIndexTing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Diffs the packages of two indexes.</p>
 <p>This does not update any of the indexes, if that is the desired behaviour, do that beforehand.</p>
@@ -412,15 +413,13 @@
 <h1 id="bringpkg_indexindex">bring.pkg_index.index<a class="headerlink" href="#bringpkg_indexindex" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_index.index.BringIndexTing"></a></p>
 <h2 id="bringindexting-objects">BringIndexTing Objects<a class="headerlink" href="#bringindexting-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringIndexTing</span><span class="p">(</span><span class="n">InheriTing</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringIndexTing</span><span class="p">(</span><span class="n">InheriTing</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.pkg_index.index.BringIndexTing.update"></a></p>
 <h4 id="update">update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">update</span><span class="p">(</span><span class="n">in_background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">update</span><span class="p">(</span><span class="n">in_background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
-
 
 <p>Updates pkg metadata.</p>
 <p><a name="bring.pkg_index.factory"></a></p>
@@ -435,32 +434,28 @@
 <h1 id="bringpkg_indexpkg">bring.pkg_index.pkg<a class="headerlink" href="#bringpkg_indexpkg" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_index.pkg.PkgTing"></a></p>
 <h2 id="pkgting-objects">PkgTing Objects<a class="headerlink" href="#pkgting-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.pkg_index.pkg.PkgTing.get_metadata"></a></p>
 <h4 id="get_metadata">get_metadata<a class="headerlink" href="#get_metadata" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
  <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
 </code></pre></div>
-
 
 <p>Return metadata associated with this package.</p>
 <p><a name="bring.pkg_index.pkg.PkgTing.find_version_data"></a></p>
 <h4 id="find_version_data">find_version_data<a class="headerlink" href="#find_version_data" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">find_version_data</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">PkgMetadata</span><span class="p">,</span> <span class="nb">vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">find_version_data</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">PkgMetadata</span><span class="p">,</span> <span class="nb">vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Find a matching version item for the provided vars dictionary.</p>
 <p><strong>Returns</strong>:</p>
 <p>A tuple consisting of the version that was found (or None), and the 'exploded' vars that were used</p>
 <p><a name="bring.pkg_index.pkg.PkgTing.get_version_folder"></a></p>
 <h4 id="get_version_folder">get_version_folder<a class="headerlink" href="#get_version_folder" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_version_folder</span><span class="p">(</span><span class="n">input_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">no_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_version_folder</span><span class="p">(</span><span class="n">input_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">no_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Retrieve the path to a (possibly cached) folder that represents the package with the specified variables.</p>
 <p>If you supply the 'target_folder' argument, a copy of the folder will be created at that location (which is not allowed to exist yet). If you do not, make sure you only do read operations on it; don't change any files in that folder, as that may corrupt results for subequent users of this cached folder.</p>
@@ -470,15 +465,13 @@
 </ul>
 <p><a name="bring.pkg_index.pkg.DynamicPkgTing"></a></p>
 <h2 id="dynamicpkgting-objects">DynamicPkgTing Objects<a class="headerlink" href="#dynamicpkgting-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DynamicPkgTing</span><span class="p">(</span><span class="n">PkgTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DynamicPkgTing</span><span class="p">(</span><span class="n">PkgTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.pkg_index.pkg.DynamicPkgTing.get_metadata"></a></p>
 <h4 id="get_metadata_1">get_metadata<a class="headerlink" href="#get_metadata_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
 </code></pre></div>
-
 
 <p>Return metadata associated with this package.</p>
 <p><a name="bring._meta"></a></p>
@@ -493,15 +486,13 @@
 <h1 id="bringinterfacesclilist_pkgs">bring.interfaces.cli.list_pkgs<a class="headerlink" href="#bringinterfacesclilist_pkgs" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.list_pkgs.BringListPkgsGroup"></a></p>
 <h2 id="bringlistpkgsgroup-objects">BringListPkgsGroup Objects<a class="headerlink" href="#bringlistpkgsgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringListPkgsGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringListPkgsGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.list_pkgs.BringListPkgsGroup.format_commands"></a></p>
 <h4 id="format_commands">format_commands<a class="headerlink" href="#format_commands" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Extra format methods for multi methods that adds all the commands
 after the options.</p>
@@ -509,9 +500,8 @@ after the options.</p>
 <h1 id="bringinterfacescliutils">bring.interfaces.cli.utils<a class="headerlink" href="#bringinterfacescliutils" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.utils.create_pkg_list_for_help"></a></p>
 <h4 id="create_pkg_list_for_help">create_pkg_list_for_help<a class="headerlink" href="#create_pkg_list_for_help" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="n">create_pkg_list_for_help</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">indicate_optional_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="n">create_pkg_list_for_help</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">indicate_optional_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
 </code></pre></div>
-
 
 <p>Extra format methods for multi methods that adds all the commands
 after the options.</p>
@@ -519,49 +509,43 @@ after the options.</p>
 <h1 id="bringinterfacescliconfig">bring.interfaces.cli.config<a class="headerlink" href="#bringinterfacescliconfig" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.config.BringContextGroup"></a></p>
 <h2 id="bringcontextgroup-objects">BringContextGroup Objects<a class="headerlink" href="#bringcontextgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringContextGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringContextGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.config.BringContextGroup.__init__"></a></p>
 <h4 id="__init__">__init__<a class="headerlink" href="#__init__" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring_config</span><span class="p">:</span> <span class="n">BringConfig</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring_config</span><span class="p">:</span> <span class="n">BringConfig</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Install</p>
 <p><a name="bring.interfaces.cli.config.BringContextCommands"></a></p>
 <h2 id="bringcontextcommands-objects">BringContextCommands Objects<a class="headerlink" href="#bringcontextcommands-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringContextCommands</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringContextCommands</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.config.BringContextCommands.__init__"></a></p>
 <h4 id="__init___1">__init__<a class="headerlink" href="#__init___1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring_config</span><span class="p">:</span> <span class="n">BringConfig</span><span class="p">,</span> <span class="n">bring_context</span><span class="p">:</span> <span class="n">ConfigTing</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring_config</span><span class="p">:</span> <span class="n">BringConfig</span><span class="p">,</span> <span class="n">bring_context</span><span class="p">:</span> <span class="n">ConfigTing</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Install</p>
 <p><a name="bring.interfaces.cli.differ"></a></p>
 <h1 id="bringinterfacesclidiffer">bring.interfaces.cli.differ<a class="headerlink" href="#bringinterfacesclidiffer" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.differ.dev"></a></p>
 <h4 id="dev">dev<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">pass_context</span>
 <span class="n">dev</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>Helper tasks for development.</p>
 <p><a name="bring.interfaces.cli.differ.differ"></a></p>
 <h4 id="differ">differ<a class="headerlink" href="#differ" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nd">@dev</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@dev</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">pass_context</span>
 <span class="k">async</span> <span class="n">differ</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Clear the bring cache dir in the relevant locaiont (e.g. '~/.cache/bring' on Linux).</p>
 <p><a name="bring.interfaces.cli.cli"></a></p>
@@ -570,27 +554,24 @@ after the options.</p>
 <h1 id="bringinterfacescliplugin">bring.interfaces.cli.plugin<a class="headerlink" href="#bringinterfacescliplugin" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.plugin.plugin"></a></p>
 <h4 id="plugin">plugin<a class="headerlink" href="#plugin" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">pass_context</span>
 <span class="nd">@handle_exc_async</span>
 <span class="k">async</span> <span class="n">plugin</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Clear the bring cache dir in the relevant locaiont (e.g. '~/.cache/bring' on Linux).</p>
 <p><a name="bring.interfaces.cli.dev"></a></p>
 <h1 id="bringinterfacesclidev">bring.interfaces.cli.dev<a class="headerlink" href="#bringinterfacesclidev" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.dev.BringDevGroup"></a></p>
 <h2 id="bringdevgroup-objects">BringDevGroup Objects<a class="headerlink" href="#bringdevgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringDevGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringDevGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.dev.BringDevGroup.__init__"></a></p>
 <h4 id="__init___2">__init__<a class="headerlink" href="#__init___2" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Install</p>
 <p><a name="bring.interfaces.cli.command_group"></a></p>
@@ -605,40 +586,59 @@ after the options.</p>
 <h1 id="bringinterfacesclicommandsinstall">bring.interfaces.cli.commands.install<a class="headerlink" href="#bringinterfacesclicommandsinstall" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.commands.install.BringInstallGroup"></a></p>
 <h2 id="bringinstallgroup-objects">BringInstallGroup Objects<a class="headerlink" href="#bringinstallgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringInstallGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringInstallGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.commands.install.BringInstallGroup.__init__"></a></p>
 <h4 id="__init___3">__init__<a class="headerlink" href="#__init___3" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">bring</span><span class="p">:</span> <span class="n">Bring</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Install</p>
 <p><a name="bring.interfaces.cli.commands.install.BringInstallGroup.format_commands"></a></p>
 <h4 id="format_commands_1">format_commands<a class="headerlink" href="#format_commands_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="n">format_commands</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">formatter</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Extra format methods for multi methods that adds all the commands
 after the options.</p>
 <p><a name="bring.interfaces.cli.commands.update"></a></p>
 <h1 id="bringinterfacesclicommandsupdate">bring.interfaces.cli.commands.update<a class="headerlink" href="#bringinterfacesclicommandsupdate" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.create"></a></p>
+<h1 id="bringinterfacesclicommandscreate">bring.interfaces.cli.commands.create<a class="headerlink" href="#bringinterfacesclicommandscreate" title="Permanent link">&para;</a></h1>
+<p><a name="bring.interfaces.cli.commands.create.BringCreateGroup"></a></p>
+<h2 id="bringcreategroup-objects">BringCreateGroup Objects<a class="headerlink" href="#bringcreategroup-objects" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringCreateGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a name="bring.interfaces.cli.commands.create.BringCreateGroup.__init__"></a></p>
+<h4 id="__init___4">__init__<a class="headerlink" href="#__init___4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Command to create bring-related elements.</p>
+<p><a name="bring.interfaces.cli.commands.create.BringCreatePkgDescGroup"></a></p>
+<h2 id="bringcreatepkgdescgroup-objects">BringCreatePkgDescGroup Objects<a class="headerlink" href="#bringcreatepkgdescgroup-objects" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringCreatePkgDescGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a name="bring.interfaces.cli.commands.create.BringCreatePkgDescGroup.__init__"></a></p>
+<h4 id="__init___5">__init__<a class="headerlink" href="#__init___5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Command to create bring-related elements.</p>
 <p><a name="bring.interfaces.cli.commands.doc"></a></p>
 <h1 id="bringinterfacesclicommandsdoc">bring.interfaces.cli.commands.doc<a class="headerlink" href="#bringinterfacesclicommandsdoc" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces.cli.commands.doc.BringDocGroup"></a></p>
 <h2 id="bringdocgroup-objects">BringDocGroup Objects<a class="headerlink" href="#bringdocgroup-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringDocGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringDocGroup</span><span class="p">(</span><span class="n">FrklBaseCommand</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.interfaces.cli.commands.doc.BringDocGroup.__init__"></a></p>
-<h4 id="__init___4">__init__<a class="headerlink" href="#__init___4" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">freckles</span><span class="p">:</span> <span class="n">Freckles</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<h4 id="__init___6">__init__<a class="headerlink" href="#__init___6" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">freckles</span><span class="p">:</span> <span class="n">Freckles</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;doc&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Install</p>
 <p><a name="bring.frecklets"></a></p>
@@ -663,9 +663,8 @@ after the options.</p>
 <h1 id="bringconfig">bring.config<a class="headerlink" href="#bringconfig" title="Permanent link">&para;</a></h1>
 <p><a name="bring.config.ConfigTing"></a></p>
 <h2 id="configting-objects">ConfigTing Objects<a class="headerlink" href="#configting-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ConfigTing</span><span class="p">(</span><span class="n">InheriTing</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ConfigTing</span><span class="p">(</span><span class="n">InheriTing</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Represents a config profile.</p>
 <p>Config profiles can inherit from other profiles, overwriting one or several of the parent key/value pairs.</p>
@@ -673,54 +672,47 @@ after the options.</p>
 <h1 id="bringconfigfolder_config">bring.config.folder_config<a class="headerlink" href="#bringconfigfolder_config" title="Permanent link">&para;</a></h1>
 <p><a name="bring.config.folder_config.FolderConfigProfilesTing"></a></p>
 <h2 id="folderconfigprofilesting-objects">FolderConfigProfilesTing Objects<a class="headerlink" href="#folderconfigprofilesting-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FolderConfigProfilesTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FolderConfigProfilesTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><a name="bring.config.folder_config.FolderConfigProfilesTing.__init__"></a></p>
-<h4 id="__init___5">__init__<a class="headerlink" href="#__init___5" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">meta</span><span class="p">:</span> <span class="n">TingMeta</span><span class="p">,</span> <span class="n">config_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config_file_ext</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
+<h4 id="__init___7">__init__<a class="headerlink" href="#__init___7" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">meta</span><span class="p">:</span> <span class="n">TingMeta</span><span class="p">,</span> <span class="n">config_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config_file_ext</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>A class to hold a set of ConfigTings, and gives access to them and their config dicts.</p>
 <p><a name="bring.config.folder_config.FolderConfigProfilesTing.get_contexts"></a></p>
 <h4 id="get_contexts">get_contexts<a class="headerlink" href="#get_contexts" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_contexts</span><span class="p">(</span><span class="n">update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ConfigTing</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_contexts</span><span class="p">(</span><span class="n">update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ConfigTing</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Get all available config profiles.</p>
 <p><a name="bring.config.folder_config.FolderConfigProfilesTing.get_config_dicts"></a></p>
 <h4 id="get_config_dicts">get_config_dicts<a class="headerlink" href="#get_config_dicts" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_config_dicts</span><span class="p">(</span><span class="n">update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_config_dicts</span><span class="p">(</span><span class="n">update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
-
 
 <p>Retrun the values of all available config profiles.</p>
 <p><a name="bring.config.bring_config"></a></p>
 <h1 id="bringconfigbring_config">bring.config.bring_config<a class="headerlink" href="#bringconfigbring_config" title="Permanent link">&para;</a></h1>
 <p><a name="bring.config.bring_config.BringConfig"></a></p>
 <h2 id="bringconfig-objects">BringConfig Objects<a class="headerlink" href="#bringconfig-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BringConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BringConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Wrapper to manage and access the configuration of a Bring instance.</p>
 <p><a name="bring.pkg_types"></a></p>
 <h1 id="bringpkg_types">bring.pkg_types<a class="headerlink" href="#bringpkg_types" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.PkgType"></a></p>
 <h2 id="pkgtype-objects">PkgType Objects<a class="headerlink" href="#pkgtype-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgType</span><span class="p">(,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgType</span><span class="p">(,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Abstract base class which acts as an adapter to retrieve package information using the 'source' key in bring pkg metadata.</p>
 <p><a name="bring.pkg_types.PkgType.__init__"></a></p>
-<h4 id="__init___6">__init__<a class="headerlink" href="#__init___6" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span>
+<h4 id="__init___8">__init__<a class="headerlink" href="#__init___8" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">arg_hive</span><span class="p">:</span> <span class="n">ArgHive</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>The base class to inherit from to create package metadata of a certain type.</p>
 <div class="codehilite"><pre><span></span><code>Supported config keys (so far):
@@ -732,17 +724,15 @@ after the options.</p>
 </ul>
 <p><a name="bring.pkg_types.PkgType.get_args"></a></p>
 <h4 id="get_args">get_args<a class="headerlink" href="#get_args" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
  <span class="o">|</span> <span class="n">get_args</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
 </code></pre></div>
-
 
 <p>A dictionary describing which arguments are necessary to create a package of this type.</p>
 <p><a name="bring.pkg_types.PkgType.get_unique_source_id"></a></p>
 <h4 id="get_unique_source_id">get_unique_source_id<a class="headerlink" href="#get_unique_source_id" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="n">get_unique_source_id</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="n">get_unique_source_id</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span>
 </code></pre></div>
-
 
 <p>Return a calculated unique id for a package.</p>
 <p>Implement your own '_get_unique_type_source_id' method for a type specific, meaningful id.
@@ -750,18 +740,16 @@ If that method is not overwritten, a 'deephash' of the source dictionary is used
 <p>This is used mainly for caching purposes.</p>
 <p><a name="bring.pkg_types.PkgType.get_seed_data"></a></p>
 <h4 id="get_seed_data">get_seed_data<a class="headerlink" href="#get_seed_data" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_seed_data</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_seed_data</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span>
 </code></pre></div>
-
 
 <p>Overwrite to provide seed data for a pkg.</p>
 <p>This is mostly used for the 'bring-pkg' type, in order to retrieve parent metadata.
 Currently only 'info' and 'labels' keys are supported.</p>
 <p><a name="bring.pkg_types.PkgType.get_pkg_metadata"></a></p>
 <h4 id="get_pkg_metadata">get_pkg_metadata<a class="headerlink" href="#get_pkg_metadata" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_pkg_metadata</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">override_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_pkg_metadata</span><span class="p">(</span><span class="n">source_details</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">override_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
 </code></pre></div>
-
 
 <p>Return metadata of a bring package, specified via the provided source details and current index.</p>
 <p>If a string is provided as 'source_details', it'll be converted into a dict like: <code>{"url": &lt;source_details&gt;}</code>.</p>
@@ -776,9 +764,8 @@ Currently only 'info' and 'labels' keys are supported.</p>
 </ul>
 <p><a name="bring.pkg_types.PkgType.process_vars"></a></p>
 <h4 id="process_vars">process_vars<a class="headerlink" href="#process_vars" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">process_vars</span><span class="p">(</span><span class="n">source_args</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">pkg_args</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">mogrifiers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">],</span> <span class="n">source_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">versions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">],</span> <span class="n">aliases</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">process_vars</span><span class="p">(</span><span class="n">source_args</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">pkg_args</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">mogrifiers</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">],</span> <span class="n">source_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">versions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">],</span> <span class="n">aliases</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Return the (remaining) args a user can specify to select a version or mogrify options.</p>
 <p>Source args can contain more arguments than will eventually be used/displayed to the user.</p>
@@ -797,9 +784,8 @@ Currently only 'info' and 'labels' keys are supported.</p>
 <h1 id="bringpkg_typesgit_repo">bring.pkg_types.git_repo<a class="headerlink" href="#bringpkg_typesgit_repo" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.git_repo.GitRepo"></a></p>
 <h2 id="gitrepo-objects">GitRepo Objects<a class="headerlink" href="#gitrepo-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">GitRepo</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GitRepo</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>A package that represents a git repository (or contents thereof).</p>
 <p>By default, all tags and branches will be used as version names. If '<em>use_commits_as_versions</em>' is set to '<em>true</em>',
@@ -813,9 +799,8 @@ tags exist, to the 'master' branch.</p>
 <h1 id="bringpkg_typesfolder">bring.pkg_types.folder<a class="headerlink" href="#bringpkg_typesfolder" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.folder.Folder"></a></p>
 <h2 id="folder-objects">Folder Objects<a class="headerlink" href="#folder-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Folder</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Folder</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>A package type to represent a local folder.</p>
 <p>This is mostly used in local development, documentation still to be done...</p>
@@ -823,25 +808,22 @@ tags exist, to the 'master' branch.</p>
 <h1 id="bringpkg_typesgithub_release">bring.pkg_types.github_release<a class="headerlink" href="#bringpkg_typesgithub_release" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.github_release.GithubRelease"></a></p>
 <h2 id="githubrelease-objects">GithubRelease Objects<a class="headerlink" href="#githubrelease-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">GithubRelease</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">GithubRelease</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>A package type that tracks GitHub release artefacts.</p>
 <p>To be able to get a list of all releases and their metadata, a package needs to specify the github user- and repo-names,
 as well as a regex to parse the release urls and compute the variables (version, architecture, os, etc.) involved to
 assemble a list of versions for a package.</p>
 <p>This is a barebones example for a <em>source</em> definition for the <a href="https://github.com/sharkdp/fd">fd</a> application:</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nt">source</span><span class="p">:</span>
+<p><div class="highlight"><pre><span></span><code>  <span class="nt">source</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">github-release</span>
     <span class="nt">user_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sharkdp</span>
     <span class="nt">repo_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fd</span>
 
     <span class="nt">url_regex</span><span class="p">:</span> <span class="s">&#39;https://github.com/.*/releases/download/v(?P&lt;version&gt;.*)/.*-v(?P=version)-(?P&lt;arch&gt;[^-]*)-(?P&lt;os&gt;[^.]*)\\..*$&#39;</span>
 </code></pre></div>
-
-
-<p>More than one such regular expressions can be provided (in which case the value for <em>url_regex</em> should be a list), all matches for all regexes will be added to the resulting list.</p>
+More than one such regular expressions can be provided (in which case the value for <em>url_regex</em> should be a list), all matches for all regexes will be added to the resulting list.</p>
 <p>Most of the regexes for different packages look fairly similar, but unfortunately Github release-urls don't follow a standard, which
 makes it impossible to come up with one that can be used for all of them. <em>bring</em> comes with a default regex that works for quite
 a few Github projects (and almost for a lot of others). In fact, the regex in the example above is the default regex that will
@@ -854,9 +836,8 @@ be used if no '<em>url_regex</em>' value is provided, and it so happens that it 
 <h1 id="bringpkg_typestemplate_url">bring.pkg_types.template_url<a class="headerlink" href="#bringpkg_typestemplate_url" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.template_url.TemplateUrlResolver"></a></p>
 <h2 id="templateurlresolver-objects">TemplateUrlResolver Objects<a class="headerlink" href="#templateurlresolver-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">TemplateUrlResolver</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TemplateUrlResolver</span><span class="p">(</span><span class="n">PkgType</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>A package type to resolve packages whose artifacts are published with static urls that can be templated.</p>
 <p>All values of all template variables are combined with each of the other template variables to create a matrix of possible combinations.
@@ -879,9 +860,8 @@ there is nothing that can be done about it and the user will see an error messag
 <h1 id="bringmogrify">bring.mogrify<a class="headerlink" href="#bringmogrify" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.Mogrifier"></a></p>
 <h2 id="mogrifier-objects">Mogrifier Objects<a class="headerlink" href="#mogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Mogrifier</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Mogrifier</span><span class="p">(</span><span class="n">Task</span><span class="p">,</span>  <span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>The base class to extend to implement a 'Mogrifier'.</p>
 <p>A mogrifier is one part of a pipeline, usually taking an input folder, along other arguments, and providing an
@@ -896,9 +876,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 (TODO: reference), so make sure to not process any calculated values in there.</p>
 <p><a name="bring.mogrify.Transmogritory"></a></p>
 <h2 id="transmogritory-objects">Transmogritory Objects<a class="headerlink" href="#transmogritory-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Transmogritory</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Transmogritory</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Registry that holds all mogrify plugins.</p>
 <p><a name="bring.mogrify.template"></a></p>
@@ -907,9 +886,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifytransform_folder">bring.mogrify.transform_folder<a class="headerlink" href="#bringmogrifytransform_folder" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.transform_folder.FolderContentMogrifier"></a></p>
 <h2 id="foldercontentmogrifier-objects">FolderContentMogrifier Objects<a class="headerlink" href="#foldercontentmogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FolderContentMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FolderContentMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Merge multiple folders into a single one, using one of the available merge strategies.</p>
 <p>This mogrifier is used internally, and, for now, can't be used in user-created mogrifier lists.</p>
@@ -921,9 +899,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifymerge_folders">bring.mogrify.merge_folders<a class="headerlink" href="#bringmogrifymerge_folders" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.merge_folders.MergeFoldersMogrifier"></a></p>
 <h2 id="mergefoldersmogrifier-objects">MergeFoldersMogrifier Objects<a class="headerlink" href="#mergefoldersmogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MergeFoldersMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MergeFoldersMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Merge multiple folders into a single one, using one of the available merge strategies.</p>
 <p>This mogrifier is used internally, and, for now, can't be used in user-created mogrifier lists.</p>
@@ -933,9 +910,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifyarchive">bring.mogrify.archive<a class="headerlink" href="#bringmogrifyarchive" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.archive.ArchiveMogrifier"></a></p>
 <h2 id="archivemogrifier-objects">ArchiveMogrifier Objects<a class="headerlink" href="#archivemogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ArchiveMogrifier</span><span class="p">(</span><span class="n">ExtractMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ArchiveMogrifier</span><span class="p">(</span><span class="n">ExtractMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Alias for 'extract', check that mogrifiers documentation for details.</p>
 <p><a name="bring.mogrify.download"></a></p>
@@ -948,9 +924,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifyfile_filter">bring.mogrify.file_filter<a class="headerlink" href="#bringmogrifyfile_filter" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.file_filter.FileFilterMogrifier"></a></p>
 <h2 id="filefiltermogrifier-objects">FileFilterMogrifier Objects<a class="headerlink" href="#filefiltermogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileFilterMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FileFilterMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Filters files in a folder using glob patterns.</p>
 <p><strong>Examples</strong>:</p>
@@ -962,9 +937,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifyextract">bring.mogrify.extract<a class="headerlink" href="#bringmogrifyextract" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.extract.ExtractMogrifier"></a></p>
 <h2 id="extractmogrifier-objects">ExtractMogrifier Objects<a class="headerlink" href="#extractmogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ExtractMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ExtractMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Extract an archive.</p>
 <p>This mogrifier is used internally, and, for now, can't be used in user-created mogrifier lists.</p>
@@ -990,9 +964,8 @@ the 'provides()' and 'requires()' instance or class level methods. This method w
 <h1 id="bringmogrifyfile">bring.mogrify.file<a class="headerlink" href="#bringmogrifyfile" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.file.FileMogrifier"></a></p>
 <h2 id="filemogrifier-objects">FileMogrifier Objects<a class="headerlink" href="#filemogrifier-objects" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FileMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FileMogrifier</span><span class="p">(</span><span class="n">SimpleMogrifier</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Alias for 'create_folder_from_file', check this mogrifiers documentation for details.</p>
 <p><a name="bring.mogrify.flatten"></a></p>

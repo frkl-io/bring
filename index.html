@@ -23,6 +23,8 @@
     
       <link rel="stylesheet" href="assets/stylesheets/main.947af8d5.min.css">
       
+        <link rel="stylesheet" href="assets/stylesheets/palette.7f672a1f.min.css">
+      
       
     
     
@@ -44,7 +46,10 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -401,13 +406,12 @@
 <li>if using <em>direnv</em>, adjust the Python version in <code>.envrc</code> (should not be necessary)</li>
 <li>if not using <em>direnv</em>, you have to setup and activate your Python virtualenv yourself, manually, before running <code>make init</code></li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="go">git clone https://gitlab.com/frkl/bring</span>
+<div class="highlight"><pre><span></span><code><span class="go">git clone https://gitlab.com/frkl/bring</span>
 <span class="go">cd bring</span>
 <span class="go">mv .envrc.disabled .envrc</span>
 <span class="go">direnv allow   # if using direnv, otherwise activate virtualenv</span>
 <span class="go">make init</span>
 </code></pre></div>
-
 
 <h2 id="make-targets"><code>make</code> targets<a class="headerlink" href="#make-targets" title="Permanent link">&para;</a></h2>
 <ul>
@@ -422,20 +426,18 @@
 </ul>
 <p>For details (and other, minor targets), check the <code>Makefile</code>.</p>
 <h2 id="running-tests">Running tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;</span> make <span class="nb">test</span>
+<div class="highlight"><pre><span></span><code><span class="gp">&gt;</span> make <span class="nb">test</span>
 <span class="gp">#</span> or
 <span class="gp">&gt;</span> make coverage
 </code></pre></div>
 
-
 <h2 id="update-project-template">Update project template<a class="headerlink" href="#update-project-template" title="Permanent link">&para;</a></h2>
 <p>This project uses <a href="https://github.com/timothycrosley/cruft">cruft</a> to apply updates to <a href="https://gitlab.com/frkl/template-python-project">the base Python project template</a> to this repository. Check out it's documentation for more information.</p>
-<div class="codehilite"><pre><span></span><code><span class="go">cruft update</span>
+<div class="highlight"><pre><span></span><code><span class="gp">&gt;</span> cruft update
 <span class="gp">#</span> interactively approve changes, make changes <span class="k">if</span> necessary
-<span class="go">git add *</span>
-<span class="go">git commit -m &quot;chore: updated project from template&quot;</span>
+<span class="gp">&gt;</span> git add *
+<span class="gp">&gt;</span> git commit -m <span class="s2">&quot;chore: updated project from template&quot;</span>
 </code></pre></div>
-
 
 <h2 id="copyright-license">Copyright &amp; license<a class="headerlink" href="#copyright-license" title="Permanent link">&para;</a></h2>
 <p>Please check the <a href="/LICENSE">LICENSE</a> file in this repository (it's a short license!).</p>

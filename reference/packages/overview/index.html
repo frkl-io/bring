@@ -23,6 +23,8 @@
     
       <link rel="stylesheet" href="../../../assets/stylesheets/main.947af8d5.min.css">
       
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7f672a1f.min.css">
+      
       
     
     
@@ -44,7 +46,10 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -279,11 +284,10 @@
 <h3 id="aliases-optional"><code>aliases</code> (optional)<a class="headerlink" href="#aliases-optional" title="Permanent link">&para;</a></h3>
 <p>A dictionary with the variable names as keys, and an alias dictionary (with alias as key, and final value as, well, ...value).</p>
 <p>E.g., for:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">os</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">os</span><span class="p">:</span>
   <span class="nt">linux</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">unknown-linux-gnu</span>
   <span class="nt">darwin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apple-darwin</span>
 </code></pre></div>
-
 
 <p>An input value of <code>linux</code> for the <code>os</code> variable would resolve to <code>unknown-linux-gnu</code>.</p>
 <h3 id="artefact-optional"><code>artefact</code> (optional)<a class="headerlink" href="#artefact-optional" title="Permanent link">&para;</a></h3>

@@ -23,6 +23,8 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.947af8d5.min.css">
       
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7f672a1f.min.css">
+      
       
     
     
@@ -44,7 +46,10 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -368,19 +373,17 @@
 </ul>
 <h2 id="install-script">Install script<a class="headerlink" href="#install-script" title="Permanent link">&para;</a></h2>
 <p>Alternatively, use the 'curly' install script for <code>bring</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="go">curl https://gitlab.com/frkl/bring/-/raw/develop/scripts/install/bring.sh | bash</span>
+<div class="highlight"><pre><span></span><code><span class="go">curl https://gitlab.com/frkl/bring/-/raw/develop/scripts/install/bring.sh | bash</span>
 </code></pre></div>
-
 
 <p>This will add a section to your shell init file to add the install location (<code>$HOME/.local/share/frkl/bin</code>) to your <code>$PATH</code>.</p>
 <p>You might need to source that file (or log out and re-log in to your session) in order to be able to use <em>bring</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="go">source ~/.profile</span>
+<div class="highlight"><pre><span></span><code><span class="go">source ~/.profile</span>
 </code></pre></div>
-
 
 <h2 id="python-package">Python package<a class="headerlink" href="#python-package" title="Permanent link">&para;</a></h2>
 <p>The python package is currently not available on <a href="https://pypi.org">pypi</a>, so you need to specify the <code>--extra-url</code> parameter for your pip command. If you chooose this install method, I assume you know how to install Python packages manually, which is why I only show you an example way of getting <em>bring</em> onto your machine:</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;</span> python3 -m venv ~/.venvs/bring
+<div class="highlight"><pre><span></span><code><span class="gp">&gt;</span> python3 -m venv ~/.venvs/bring
 <span class="gp">&gt;</span> <span class="nb">source</span> ~/.venvs/bring/bin/activate
 <span class="gp">&gt;</span> pip install --extra-index-url https://pkgs.frkl.io/frkl/dev bring
 <span class="go">Looking in indexes: https://pypi.org/simple, https://pkgs.frkl.io/frkl/dev</span>
