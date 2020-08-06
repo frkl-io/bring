@@ -388,6 +388,15 @@
 </code></pre></div>
 
 <p>Get all pkgs, per available (or requested) indexes.</p>
+<p><a name="bring.bring.Bring.get_full_package_name"></a></p>
+<h4 id="get_full_package_name">get_full_package_name<a class="headerlink" href="#get_full_package_name" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_full_package_name</span><span class="p">(</span><span class="n">package_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Get the full package name of a provided string.</p>
+<p>Mainly this is used to make sure there is an 'index-components' to
+a package name. The default index will be used if none was present.</p>
+<p>If the string is not a valid package name can't otherwise not be processed 'None' is returned.</p>
 <p><a name="bring.defaults"></a></p>
 <h1 id="bringdefaults">bring.defaults<a class="headerlink" href="#bringdefaults" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_index"></a></p>
@@ -736,6 +745,8 @@ Currently only 'info' and 'labels' keys are supported.</p>
 </ul>
 <p><strong>Returns</strong>:</p>
 <p>a dictionary with 3 keys: args, version_vars, mogrify_vars</p>
+<p><a name="bring.pkg_types.git_files"></a></p>
+<h1 id="bringpkg_typesgit_files">bring.pkg_types.git_files<a class="headerlink" href="#bringpkg_typesgit_files" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.git_repo"></a></p>
 <h1 id="bringpkg_typesgit_repo">bring.pkg_types.git_repo<a class="headerlink" href="#bringpkg_typesgit_repo" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_types.git_repo.GitRepo"></a></p>
