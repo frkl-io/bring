@@ -444,25 +444,6 @@
 </code></pre></div>
 
 <p>Return metadata associated with this package.</p>
-<p><a name="bring.pkg_index.pkg.PkgTing.find_version_data"></a></p>
-<h4 id="find_version_data">find_version_data<a class="headerlink" href="#find_version_data" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">find_version_data</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="n">PkgMetadata</span><span class="p">,</span> <span class="nb">vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PkgVersion</span><span class="p">]</span>
-</code></pre></div>
-
-<p>Find a matching version item for the provided vars dictionary.</p>
-<p><strong>Returns</strong>:</p>
-<p>A tuple consisting of the version that was found (or None), and the 'exploded' vars that were used</p>
-<p><a name="bring.pkg_index.pkg.PkgTing.get_version_folder"></a></p>
-<h4 id="get_version_folder">get_version_folder<a class="headerlink" href="#get_version_folder" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_version_folder</span><span class="p">(</span><span class="n">input_vars</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">target_folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">no_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-</code></pre></div>
-
-<p>Retrieve the path to a (possibly cached) folder that represents the package with the specified variables.</p>
-<p>If you supply the 'target_folder' argument, a copy of the folder will be created at that location (which is not allowed to exist yet). If you do not, make sure you only do read operations on it; don't change any files in that folder, as that may corrupt results for subequent users of this cached folder.</p>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>Mapping</code> - a dict with 'path' and 'version_hash' keys</li>
-</ul>
 <p><a name="bring.pkg_index.pkg.DynamicPkgTing"></a></p>
 <h2 id="dynamicpkgting-objects">DynamicPkgTing Objects<a class="headerlink" href="#dynamicpkgting-objects" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DynamicPkgTing</span><span class="p">(</span><span class="n">PkgTing</span><span class="p">)</span>
