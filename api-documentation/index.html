@@ -430,31 +430,6 @@
 <h1 id="bringpkg_indexgitlab_user_index">bring.pkg_index.gitlab_user_index<a class="headerlink" href="#bringpkg_indexgitlab_user_index" title="Permanent link">&para;</a></h1>
 <p><a name="bring.pkg_index.github_user_index"></a></p>
 <h1 id="bringpkg_indexgithub_user_index">bring.pkg_index.github_user_index<a class="headerlink" href="#bringpkg_indexgithub_user_index" title="Permanent link">&para;</a></h1>
-<p><a name="bring.pkg_index.pkg"></a></p>
-<h1 id="bringpkg_indexpkg">bring.pkg_index.pkg<a class="headerlink" href="#bringpkg_indexpkg" title="Permanent link">&para;</a></h1>
-<p><a name="bring.pkg_index.pkg.PkgTing"></a></p>
-<h2 id="pkgting-objects">PkgTing Objects<a class="headerlink" href="#pkgting-objects" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a name="bring.pkg_index.pkg.PkgTing.get_metadata"></a></p>
-<h4 id="get_metadata">get_metadata<a class="headerlink" href="#get_metadata" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
- <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
-</code></pre></div>
-
-<p>Return metadata associated with this package.</p>
-<p><a name="bring.pkg_index.pkg.DynamicPkgTing"></a></p>
-<h2 id="dynamicpkgting-objects">DynamicPkgTing Objects<a class="headerlink" href="#dynamicpkgting-objects" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DynamicPkgTing</span><span class="p">(</span><span class="n">PkgTing</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a name="bring.pkg_index.pkg.DynamicPkgTing.get_metadata"></a></p>
-<h4 id="get_metadata_1">get_metadata<a class="headerlink" href="#get_metadata_1" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
-</code></pre></div>
-
-<p>Return metadata associated with this package.</p>
 <p><a name="bring._meta"></a></p>
 <h1 id="bring_meta">bring._meta<a class="headerlink" href="#bring_meta" title="Permanent link">&para;</a></h1>
 <p><a name="bring.interfaces"></a></p>
@@ -837,6 +812,31 @@ there is nothing that can be done about it and the user will see an error messag
 <h1 id="bringdocargs">bring.doc.args<a class="headerlink" href="#bringdocargs" title="Permanent link">&para;</a></h1>
 <p><a name="bring.doc.pkg"></a></p>
 <h1 id="bringdocpkg">bring.doc.pkg<a class="headerlink" href="#bringdocpkg" title="Permanent link">&para;</a></h1>
+<p><a name="bring.pkg"></a></p>
+<h1 id="bringpkg">bring.pkg<a class="headerlink" href="#bringpkg" title="Permanent link">&para;</a></h1>
+<p><a name="bring.pkg.PkgTing"></a></p>
+<h2 id="pkgting-objects">PkgTing Objects<a class="headerlink" href="#pkgting-objects" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PkgTing</span><span class="p">(</span><span class="n">SimpleTing</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a name="bring.pkg.PkgTing.get_metadata"></a></p>
+<h4 id="get_metadata">get_metadata<a class="headerlink" href="#get_metadata" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="nd">@abstractmethod</span>
+ <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
+</code></pre></div>
+
+<p>Return metadata associated with this package.</p>
+<p><a name="bring.pkg.DynamicPkgTing"></a></p>
+<h2 id="dynamicpkgting-objects">DynamicPkgTing Objects<a class="headerlink" href="#dynamicpkgting-objects" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DynamicPkgTing</span><span class="p">(</span><span class="n">PkgTing</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a name="bring.pkg.DynamicPkgTing.get_metadata"></a></p>
+<h4 id="get_metadata_1">get_metadata<a class="headerlink" href="#get_metadata_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code> <span class="o">|</span> <span class="k">async</span> <span class="n">get_metadata</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">register_task</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PkgMetadata</span>
+</code></pre></div>
+
+<p>Return metadata associated with this package.</p>
 <p><a name="bring.mogrify"></a></p>
 <h1 id="bringmogrify">bring.mogrify<a class="headerlink" href="#bringmogrify" title="Permanent link">&para;</a></h1>
 <p><a name="bring.mogrify.Mogrifier"></a></p>

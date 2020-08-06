@@ -559,6 +559,7 @@
 <span class="go">  terminal-to-html  Converts arbitrary shell output (with ANSI) into beautifully rendered HTML</span>
 <span class="go">  tldr              Golang command line client for tldr</span>
 <span class="go">  tubectl           kubectl alternative with quick context switching, kubectl on steroids</span>
+<span class="go">  wrangler          🤠   wrangle your cloudflare workers</span>
 <span class="go">  ytop              A TUI system monitor written in Rust</span>
 <span class="go">  zoxide            A fast cd command that learns your habits</span>
 
@@ -625,12 +626,12 @@
                       using the default 'bring' merge strategy (save metadata about each
                       installed file, more information can be found <a href="https://bring.frkl.io/docs/reference/merging/"><span style="color: #0000ff">here</span></a>.
  <span style="font-style: italic">                    </span>
- <span style="font-style: italic">metadata_timestamp  </span> a day ago
+ <span style="font-style: italic">metadata_timestamp  </span> an hour ago
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">uri                 </span> https://gitlab.com/bring-indexes/binaries/-/raw/master/.bring/this.idx.br
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">defaults            </span> <span style="color: #268bd2; background-color: #fdf6e3">arch</span><span style="color: #657b83; background-color: #fdf6e3">: x86_64                                                               </span>
-                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az70                                                              </span>
+                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az18                                                              </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">os</span><span style="color: #657b83; background-color: #fdf6e3">: linux                                                                  </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">target</span><span style="color: #657b83; background-color: #fdf6e3">: ~/.local/bring                                                     </span>
  <span style="font-style: italic">                    </span>
@@ -670,6 +671,7 @@
                        <span style="color: #005faf; font-weight: bold">tldr              </span> <span style="font-style: italic">Golang command line client for tldr                   </span>
                        <span style="color: #005faf; font-weight: bold">tubectl           </span> <span style="font-style: italic">kubectl alternative with quick context switching,     </span>
                                           <span style="font-style: italic">kubectl on steroids                                   </span>
+                       <span style="color: #005faf; font-weight: bold">wrangler          </span> <span style="font-style: italic">🤠   wrangle your cloudflare workers                  </span>
                        <span style="color: #005faf; font-weight: bold">ytop              </span> <span style="font-style: italic">A TUI system monitor written in Rust                  </span>
                        <span style="color: #005faf; font-weight: bold">zoxide            </span> <span style="font-style: italic">A fast cd command that learns your habits             </span>
 </div></pre>
@@ -696,7 +698,7 @@
 
  <span style="color: #808080; font-weight: bold">Variables</span>
 
- <span style="color: #ff8700">arch   </span>   <span style="font-style: italic">The architecture of the underlying system.</span>
+ <span style="color: #ff8700">arch   </span>   <span style="font-style: italic">The architecture the binary is built for.</span>
  <span style="color: #ff8700">       </span>
            default   <span style="font-style: italic"> -- no default -- </span>
            required  <span style="font-style: italic"> yes              </span>
@@ -741,7 +743,7 @@
 <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
 > bring install binaries.fd
 
-<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'binaries.fd'</span>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
 
 <span style="color: #808080; font-weight: bold">Variables</span>
 
@@ -777,7 +779,7 @@
 <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="max-height:200px;overflow:auto" class="terminal-output">
 > bring install --target /tmp/bring binaries.fd
 
-<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'binaries.fd'</span>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
 
 <span style="color: #808080; font-weight: bold">Variables</span>
 
@@ -813,7 +815,7 @@
 <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
 > bring install kubernetes.cert-manager
 
-<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'kubernetes.cert-manager'</span>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'cert-manager'</span>
 
 <span style="color: #808080; font-weight: bold">Variables</span>
 
@@ -836,7 +838,7 @@
 
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__e6k680l0</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__zc0nooar</span>':
 
   <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre>
@@ -845,65 +847,12 @@
 <p>Arguments for the <code>install</code> sub-command are split into two parts:</p>
 <h4 id="target-related-arguments">'target'-related arguments<a class="headerlink" href="#target-related-arguments" title="Permanent link">&para;</a></h4>
 <p>The <code>install</code> command needs to know the name of the package to install, where to install it to, and as how (e.g. ignore existing files, overwrite them, etc.). Use the <code>--help</code> command line argument to display available options:</p>
-<div style='max-height:240px;overflow:auto'>
-<div class="highlight"><pre><span></span><code><span class="gp">&gt;</span> bring install --help
-<span class="go">Usage: bring install [OPTIONS] PROCESSOR</span>
+<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--help&#39;)&#39; returned
+       non-zero exit status 1.
 
-<span class="go">  Install one or several packages.</span>
-
-<span class="go">  Either provide the name of one of the available packages, or the path to a</span>
-<span class="go">  file containing a list of packages to install.</span>
-
-<span class="go">  TODO: more documentation and links, also explain target and target config</span>
-
-<span class="go">Options:</span>
-<span class="go">  --explain                      Don&#39;t perform installation, only explain</span>
-<span class="go">                                 steps.  [default: False]</span>
-<span class="go">  --force                        Overwrite potentially existing files.</span>
-<span class="go">  --help                         Show this message and exit.  [default: False]</span>
-<span class="go">  --target TARGET                The target directory to install the files</span>
-<span class="go">                                 into.</span>
-<span class="go">  --target-config TARGET_CONFIG  The target configuration.</span>
-<span class="go">  --update                       Replace a potentially existing file that was</span>
-<span class="go">                                 installed by bring.</span>
-
-<span class="go">Packages:</span>
-<span class="go">  [binaries.]argo              Container native workflow engine for...</span>
-<span class="go">  [binaries.]argo-cd           Declarative continuous deployment for...</span>
-<span class="go">  [binaries.]bat               a &#39;cat&#39; clone with wings</span>
-<span class="go">  [binaries.]dbmate            a database migration tool</span>
-<span class="go">  [binaries.]dust              like du but more intuitive</span>
-<span class="go">  [binaries.]eclectica         Cool and eclectic version manager for any...</span>
-<span class="go">  [binaries.]eclectica-proxy   Cool and eclectic version manager for any...</span>
-<span class="go">  [binaries.]fd                fd is a simple, fast and user-friendly...</span>
-<span class="go">  [binaries.]helm              A Kubernetes Package Manager</span>
-<span class="go">  [binaries.]hugo              a static site generator</span>
-<span class="go">  [binaries.]k3d               Little helper to run Rancher Lab&#39;s k3s in...</span>
-<span class="go">  [binaries.]k3sup             from Zero to KUBECONFIG in less than 1 min</span>
-<span class="go">  [binaries.]kube-prompt       An interactive kubernetes client featuring...</span>
-<span class="go">  [binaries.]kubectl           kubectl controls the Kubernetes cluster...</span>
-<span class="go">  [binaries.]lazydocker        The lazier way to manage everything docker</span>
-<span class="go">  [binaries.]lazygit           simple terminal UI for git commands</span>
-<span class="go">  [binaries.]lsd               The next gen ls command</span>
-<span class="go">  [binaries.]mitmproxy         An interactive TLS-capable intercepting HTTP...</span>
-<span class="go">  [binaries.]navi              an interactive cheatsheet tool for the...</span>
-<span class="go">  [binaries.]nnn               The missing terminal file manager for X</span>
-<span class="go">  [binaries.]pandoc            Universal markup converter</span>
-<span class="go">  [binaries.]terminal-to-html  Converts arbitrary shell output (with ANSI)...</span>
-<span class="go">  [binaries.]tldr              Golang command line client for tldr</span>
-<span class="go">  [binaries.]tubectl           kubectl alternative with quick context...</span>
-<span class="go">  [binaries.]ytop              A TUI system monitor written in Rust</span>
-<span class="go">  [binaries.]zoxide            A fast cd command that learns your habits</span>
-<span class="go">  collections.templates        Templates collection</span>
-<span class="go">  kubernetes.argo-cd           Argo CD is a declarative, GitOps continuous...</span>
-<span class="go">  kubernetes.cert-manager      Automatically provision and manage TLS...</span>
-<span class="go">  kubernetes.ingress-nginx     NGINX Ingress Controller for Kubernetes</span>
-<span class="go">  scripts.bashtop              Linux resource monitor</span>
-<span class="go">  scripts.kubectx              Faster way to switch between clusters in...</span>
-<span class="go">  scripts.kubens               Faster way to switch between namespaces in...</span>
+  [bold]Parent exception:[/bold]
+    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--help&#39;)&#39; returned non-zero exit status 1.
 </code></pre></div>
-
-</div>
 
 <p>Note: explaining the <code>merge_strategy</code> parameter is out of scope for this quick-start guide. Check the <a href="/reference/merge_strategies">reference documentation</a> for details.</p>
 <h4 id="package-related-arguments">'package'-related arguments<a class="headerlink" href="#package-related-arguments" title="Permanent link">&para;</a></h4>
@@ -913,7 +862,7 @@
 <span class="go">Usage: bring install binaries.fd [OPTIONS]</span>
 
 <span class="go">Options:</span>
-<span class="go">  --arch ARCH        The architecture of the underlying system.</span>
+<span class="go">  --arch ARCH        The architecture the binary is built for.</span>
 <span class="go">  --os OS            The operating system to run on.</span>
 <span class="go">  --version VERSION  The version of the package.</span>
 <span class="go">  -h, --help         Show this message and exit.</span>
@@ -924,7 +873,7 @@
 <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
 > bring install --explain binaries.fd --os darwin
 
-<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'binaries.fd'</span>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
 
 <span style="color: #808080; font-weight: bold">Variables</span>
 
