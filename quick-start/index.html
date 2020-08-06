@@ -626,7 +626,7 @@
                       using the default 'bring' merge strategy (save metadata about each
                       installed file, more information can be found <a href="https://bring.frkl.io/docs/reference/merging/"><span style="color: #0000ff">here</span></a>.
  <span style="font-style: italic">                    </span>
- <span style="font-style: italic">metadata_timestamp  </span> 9 hours ago
+ <span style="font-style: italic">metadata_timestamp  </span> 11 hours ago
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">uri                 </span> https://gitlab.com/bring-indexes/binaries/-/raw/master/.bring/this.idx.br
  <span style="font-style: italic">                    </span>
@@ -743,30 +743,108 @@
 <h2 id="install-a-package">Install a package<a class="headerlink" href="#install-a-package" title="Permanent link">&para;</a></h2>
 <p>To install one of the packages in any of the available indexes, all we need to do is specify the full name for the package (index- as well as package name within that index).</p>
 <h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;binaries.fd&#39;)&#39;
-       returned non-zero exit status 1.
+<pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
+> bring install binaries.fd
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;binaries.fd&#39;)&#39; returned non-zero exit status 1.
-</code></pre></div>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
+
+
+<span style="color: #808080; font-weight: bold">Variables</span>
+
+ <span style="font-style: italic"> arch          </span>  x86_64              origin: processed value
+ <span style="font-style: italic"> os            </span>  unknown-linux-gnu   origin: processed value, from alias: linux
+ <span style="font-style: italic"> pkg           </span>  binaries.fd         origin: user input
+ <span style="font-style: italic"> target        </span>  -- no value --
+ <span style="font-style: italic"> target_config </span>  -- no value --
+ <span style="font-style: italic"> transform     </span>  -- no value --
+ <span style="font-style: italic"> version       </span>  8.1.1               origin: package defaults, from alias: latest
+
+<span style="color: #808080; font-weight: bold">Progress</span>
+
+- installing pkg <span style="color: #008000">'fd'</span> -&gt; <span style="color: #008000">done</span>
+  <span style="color: #000080">- gathering file</span><span style="color: #000080; font-weight: bold">(</span><span style="color: #000080">s</span><span style="color: #000080; font-weight: bold">)</span><span style="color: #000080"> for package </span><span style="color: #000080">'fd'</span><span style="color: #000080"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- downloading file: </span>
+<span style="color: #005f00; text-decoration: underline">https://github.com/sharkdp/fd/releases/download/v8.1.1/fd-v8.1.1-x86_64-unknown-linux-gnu.tar.gz</span><span style="color: #005f00"> -&gt; </span>
+<span style="color: #008000">done</span>
+    <span style="color: #005f00">- extracting archive </span><span style="color: #005f00; font-weight: bold">(</span><span style="color: #005f00">disregarding root folder, only using contents of it</span><span style="color: #005f00; font-weight: bold">)</span><span style="color: #005f00"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- validating package content -&gt; </span><span style="color: #008000">done</span>
+  <span style="color: #000080">- merging prepared files into new temporary folder -&gt; </span><span style="color: #008000">done</span>
+
+<span style="color: #808080; font-weight: bold">Result:</span>
+
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__sgauig3y</span>':
+
+  <span style="font-style: italic">fd</span>: merged
+</div></pre>
 
 <p>As you can see from the output of that command, the <code>fd</code> binary file was installed into the local <code>$HOME/.local/bring</code> folder. This is because that is the default folder for the <code>binaries</code> <em>index</em>, configured in the <em>default</em> context (check the config above).  </p>
 <p>If you want to install a package into a different directory, you can use the <code>--target</code> parameter:</p>
-<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--target&#39;,
-       &#39;/tmp/bring&#39;, &#39;binaries.fd&#39;)&#39; returned non-zero exit status 1.
+<pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="max-height:200px;overflow:auto" class="terminal-output">
+> bring install --target /tmp/bring binaries.fd
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--target&#39;, &#39;/tmp/bring&#39;, &#39;binaries.fd&#39;)&#39; returned non-zero exit status 1.
-</code></pre></div>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
+
+
+<span style="color: #808080; font-weight: bold">Variables</span>
+
+ <span style="font-style: italic"> arch          </span>  x86_64              origin: processed value
+ <span style="font-style: italic"> os            </span>  unknown-linux-gnu   origin: processed value, from alias: linux
+ <span style="font-style: italic"> pkg           </span>  binaries.fd         origin: user input
+ <span style="font-style: italic"> target        </span>  /tmp/bring          origin: user input
+ <span style="font-style: italic"> target_config </span>  -- no value --
+ <span style="font-style: italic"> transform     </span>  -- no value --
+ <span style="font-style: italic"> version       </span>  8.1.1               origin: package defaults, from alias: latest
+
+<span style="color: #808080; font-weight: bold">Progress</span>
+
+- installing pkg <span style="color: #008000">'fd'</span> -&gt; <span style="color: #008000">done</span>
+  <span style="color: #000080">- gathering file</span><span style="color: #000080; font-weight: bold">(</span><span style="color: #000080">s</span><span style="color: #000080; font-weight: bold">)</span><span style="color: #000080"> for package </span><span style="color: #000080">'fd'</span><span style="color: #000080"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- downloading file: </span>
+<span style="color: #005f00; text-decoration: underline">https://github.com/sharkdp/fd/releases/download/v8.1.1/fd-v8.1.1-x86_64-unknown-linux-gnu.tar.gz</span><span style="color: #005f00"> -&gt; </span>
+<span style="color: #008000">done</span>
+    <span style="color: #005f00">- extracting archive </span><span style="color: #005f00; font-weight: bold">(</span><span style="color: #005f00">disregarding root folder, only using contents of it</span><span style="color: #005f00; font-weight: bold">)</span><span style="color: #005f00"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- validating package content -&gt; </span><span style="color: #008000">done</span>
+  <span style="color: #000080">- merging prepared files into folder </span><span style="color: #000080">'/tmp/bring'</span><span style="color: #000080"> -&gt; </span><span style="color: #008000">done</span>
+
+<span style="color: #808080; font-weight: bold">Result:</span>
+
+- merged items into '<span style="font-style: italic">/tmp/bring</span>':
+
+  <span style="font-style: italic">fd</span>: merged
+</div></pre>
 
 <p>the target directory where the file(s) of the package should be installed using the <code>--target</code> parameter. That folder (as well as any intermediate ones) will be created should it not exist yet.</p>
 <p>If you don't specify the <code>--target</code> parameter, and the index does not have a default target set, the files will be copied into a temporary directory somewhere under <code>~/.local/share/bring/workspace/results/</code>:</p>
-<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;kubernetes.cert-
-       manager&#39;)&#39; returned non-zero exit status 1.
+<pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
+> bring install kubernetes.cert-manager
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;kubernetes.cert-manager&#39;)&#39; returned non-zero exit status 1.
-</code></pre></div>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'cert-manager'</span>
+
+
+<span style="color: #808080; font-weight: bold">Variables</span>
+
+ <span style="font-style: italic"> pkg           </span>  kubernetes.cert-manager   origin: user input
+ <span style="font-style: italic"> target        </span>  -- no value --
+ <span style="font-style: italic"> target_config </span>  -- no value --
+ <span style="font-style: italic"> transform     </span>  -- no value --
+ <span style="font-style: italic"> version       </span>  0.16.0                    origin: package defaults, from alias: latest
+
+<span style="color: #808080; font-weight: bold">Progress</span>
+
+- installing pkg <span style="color: #008000">'cert-manager'</span> -&gt; <span style="color: #008000">done</span>
+  <span style="color: #000080">- gathering file</span><span style="color: #000080; font-weight: bold">(</span><span style="color: #000080">s</span><span style="color: #000080; font-weight: bold">)</span><span style="color: #000080"> for package </span><span style="color: #000080">'cert-manager'</span><span style="color: #000080"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- downloading file: </span>
+<span style="color: #005f00; text-decoration: underline">https://github.com/jetstack/cert-manager/releases/download/v0.16.0/cert-manager.yaml</span><span style="color: #005f00"> -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- moving file into new temporary folder -&gt; </span><span style="color: #008000">done</span>
+    <span style="color: #005f00">- validating package content -&gt; </span><span style="color: #008000">done</span>
+  <span style="color: #000080">- merging prepared files into new temporary folder -&gt; </span><span style="color: #008000">done</span>
+
+<span style="color: #808080; font-weight: bold">Result:</span>
+
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__wx4mpqg4</span>':
+
+  <span style="font-style: italic">cert-manager.yaml</span>: merged
+</div></pre>
 
 <h3 id="install-arguments">Install arguments<a class="headerlink" href="#install-arguments" title="Permanent link">&para;</a></h3>
 <p>Arguments for the <code>install</code> sub-command are split into two parts:</p>
@@ -783,21 +861,44 @@
 <h4 id="package-related-arguments">'package'-related arguments<a class="headerlink" href="#package-related-arguments" title="Permanent link">&para;</a></h4>
 <p>Packages often come in different flavours (e.g. which architecture, OS, etc.), as well as several versions, which can be specified in the <code>install</code> command after the package name. Depending on the <em>index</em> configuration, <code>bring</code> assumes certain default values which often make it so that no package arguments at all need to be provided (assuming one is happy with those defaults).</p>
 <p>But, often it is advisable to exactly specify the version of a package to install. If that is desired, you can use the <code>--help</code> parameter some-where after the package name to get <code>bring</code> to display information about the supported arguments:</p>
-<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;binaries.fd&#39;, &#39;--
-       help&#39;)&#39; returned non-zero exit status 1.
+<div class="highlight"><pre><span></span><code><span class="gp">&gt;</span> bring install binaries.fd --help
+<span class="go">Usage: bring install binaries.fd [OPTIONS]</span>
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;binaries.fd&#39;, &#39;--help&#39;)&#39; returned non-zero exit status 1.
+<span class="go">Options:</span>
+<span class="go">  --arch ARCH        The architecture the binary is built for.</span>
+<span class="go">  --os OS            The operating system to run on.</span>
+<span class="go">  --version VERSION  The version of the package.</span>
+<span class="go">  -h, --help         Show this message and exit.</span>
 </code></pre></div>
 
 <h3 id="install-details">Install details<a class="headerlink" href="#install-details" title="Permanent link">&para;</a></h3>
 <p>In case you are wondering what the install command actually does, you can use the <code>--explain</code> flag to get some information about the variables used, and the tasks that compose the install process:</p>
-<div class="highlight"><pre><span></span><code>[red bold]Error:[/red bold] Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--explain&#39;,
-       &#39;binaries.fd&#39;, &#39;--os&#39;, &#39;darwin&#39;)&#39; returned non-zero exit status 1.
+<pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style="overflow:auto" class="terminal-output">
+> bring install --explain binaries.fd --os darwin
 
-  [bold]Parent exception:[/bold]
-    Command &#39;(&#39;bring&#39;, &#39;install&#39;, &#39;--explain&#39;, &#39;binaries.fd&#39;, &#39;--os&#39;, &#39;darwin&#39;)&#39; returned non-zero exit status 1.
-</code></pre></div>
+<span style="color: #808080; font-weight: bold">Task</span>: installing package <span style="color: #008000">'fd'</span>
+
+
+<span style="color: #808080; font-weight: bold">Variables</span>
+
+ <span style="font-style: italic"> arch          </span>  x86_64           origin: processed value
+ <span style="font-style: italic"> os            </span>  apple-darwin     origin: user input, from alias: darwin
+ <span style="font-style: italic"> pkg           </span>  binaries.fd      origin: user input
+ <span style="font-style: italic"> target        </span>  -- no value --
+ <span style="font-style: italic"> target_config </span>  -- no value --
+ <span style="font-style: italic"> transform     </span>  -- no value --
+ <span style="font-style: italic"> version       </span>  8.1.1            origin: package defaults, from alias: latest
+
+<span style="color: #808080; font-weight: bold">Steps</span>
+
+  - <span style="color: #000080">installing pkg 'fd'</span>
+    - <span style="color: #005f00">gathering file(s) for package 'fd'</span>
+      - <span style="color: #ff00ff">downloading file: </span>
+<span style="color: #ff00ff">https://github.com/sharkdp/fd/releases/download/v8.1.1/fd-v8.1.1-x86_64-apple-darwin.tar.gz</span>
+      - <span style="color: #ff00ff">extracting archive (disregarding root folder, only using contents of it)</span>
+      - <span style="color: #ff00ff">validating package content</span>
+    - <span style="color: #005f00">merging prepared files into new temporary folder</span>
+</div></pre>
                 
               
               
