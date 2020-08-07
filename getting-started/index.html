@@ -87,7 +87,7 @@
  <span style="font-style: italic">uri                 </span> https://gitlab.com/bring-indexes/binaries/-/raw/master/.bring/this.idx.br
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">defaults            </span> <span style="color: #268bd2; background-color: #fdf6e3">arch</span><span style="color: #657b83; background-color: #fdf6e3">: x86_64                                                               </span>
-                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az18                                                              </span>
+                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az70                                                              </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">os</span><span style="color: #657b83; background-color: #fdf6e3">: linux                                                                  </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">target</span><span style="color: #657b83; background-color: #fdf6e3">: ~/.local/bring                                                     </span>
  <span style="font-style: italic">                    </span>
@@ -219,7 +219,7 @@
 
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__y_q1zm9v</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__z_u7d5vn</span>':
 
   <span style="font-style: italic">fd</span>: merged
 </div></pre> <p>As you can see from the output of that command, the <code>fd</code> binary file was installed into the local <code>$HOME/.local/bring</code> folder. This is because that is the default folder for the <code>binaries</code> <em>index</em>, configured in the <em>default</em> context (check the config above). </p> <p>If you want to install a package into a different directory, you can use the <code>--target</code> parameter:</p> <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style=max-height:200px;overflow:auto class=terminal-output>
@@ -280,7 +280,7 @@
 
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__rr5yorny</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__xd1pvy2l</span>':
 
   <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre> <h3 id=install-arguments>Install arguments<a class=headerlink href=#install-arguments title="Permanent link">&para;</a></h3> <p>Arguments for the <code>install</code> sub-command are split into two parts:</p> <h4 id=target-related-arguments>'target'-related arguments<a class=headerlink href=#target-related-arguments title="Permanent link">&para;</a></h4> <p>The <code>install</code> command needs to know the name of the package to install, where to install it to, and as how (e.g. ignore existing files, overwrite them, etc.). Use the <code>--help</code> command line argument to display available options:</p> <div style=max-height:240px;overflow:auto> <div class=highlight><pre><span></span><code><span class=gp>&gt;</span> bring install --help
