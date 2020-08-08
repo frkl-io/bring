@@ -73,16 +73,15 @@ jobs:
       - run: brew install pyenv
       - run: brew install pyenv-virtualenv
       - uses: actions/checkout@v2
-      - name: update all existing requirements
-        run: pip3 list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
-#      # uncomment to sign binary (needs certificate data in env)
-#      - name: Add MacOS certs
-#        run: chmod +x ./scripts/build-binary/add-osx-cert.sh && ./scripts/build-binary/add-osx-cert.sh
-#        env:
-#          CERTIFICATE_OSX_APPLICATION: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
-#          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-#      - name: sign binary
-#        run: "codesign -f -s 'Developer ID Application: Markus Binsteiner (4Q559SZWTL)' dist/darwin19/bring"
+      - name: build_binary
+        run: ./scripts/build-binary/build.sh --spec-file scripts/build-binary/onefile.spec --python-version "3.7.7"
+      - name: Add MacOS certs
+        run: chmod +x ./scripts/build-binary/add-osx-cert.sh && ./scripts/build-binary/add-osx-cert.sh
+        env:
+          CERTIFICATE_OSX_APPLICATION: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
+          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+      - name: sign binary
+        run: "codesign -f -s 'Developer ID Application: Markus Binsteiner (4Q559SZWTL)' dist/darwin19/bring"
       - name: Archive Mac OS X binary
         uses: actions/upload-artifact@v1
         with:
