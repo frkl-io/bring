@@ -87,7 +87,7 @@ class DownloadMultipleFilesMogrifier(SimpleMogrifier):
 
             try_nr = 1
             success = False
-            last_error = Optional[Exception] = None
+            last_error: Optional[Exception] = None
             while try_nr <= retries and not success:
 
                 try_nr = try_nr + 1
