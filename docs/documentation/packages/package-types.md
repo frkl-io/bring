@@ -21,13 +21,12 @@ Name | Description | Type | Required | Default
 
 {{ arg_table(args) }}
 
-{% if examples %}
-
 {% if doc.get_help() %}
 ### Description
 
 {{ doc.get_help() }}
 {% endif %}
+{% if examples %}
 
 ### Examples
 {% for pkg_name, pkg in examples.items() %}

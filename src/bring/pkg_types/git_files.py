@@ -7,7 +7,7 @@ from frkl.common.subprocesses import GitProcess
 
 
 class GitFiles(PkgType):
-    """A apcakge type to retrieve one or several files from a git repository.
+    """A package type to retrieve one or several files from a git repository.
 
     Under the hood, this uses the [``git archive``](https://git-scm.com/docs/git-archive) command to retrieve a zipped archive of the requested files, so when specifying the git url, make sure to either use the *git* or *ssh* protocol, or, if using *https*, that the remote server supports [Smart HTTP](https://git-scm.com/book/en/v2/Git-on-the-Server-Smart-HTTP) (GitHub, for example, does not as far as I know).
 
