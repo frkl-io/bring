@@ -146,3 +146,6 @@ dist: clean ## builds source and wheel package
 
 index:
 	bring export-index .
+
+attribution: ## create/update attribution file
+	scripts/attribution/create_attribution_data.sh . ./src/bring/resources/attribution.json
