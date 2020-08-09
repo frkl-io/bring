@@ -9,18 +9,18 @@ from pydriller import Commit, GitRepository
 
 
 class GitRepo(PkgType):
-    """A package that represents a git repository (or contents thereof).
+    """A package that represents a git repository and its content.
 
     By default, all tags and branches will be used as version names. If '*use_commits_as_versions*' is set to '*true*',
     also the commit hashes will be used. An alias '*latest*' will be added, pointing to the latest tag, or, in case no
     tags exist, to the 'master' branch.
 
     Examples:
-      - kubernetes.ingress-nginx
+      - scripts.bashtop
     """
 
-    _plugin_name: str = "git"
-    _plugin_supports: str = "git"
+    _plugin_name: str = "git_repo"
+    _plugin_supports: str = "git_repo"
 
     def __init__(self, **config: Any):
 
