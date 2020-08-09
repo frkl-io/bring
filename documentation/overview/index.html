@@ -82,7 +82,7 @@
                       using the default 'bring' merge strategy (save metadata about each
                       installed file, more information can be found <a href=https://bring.frkl.io/docs/reference/merging/ ><span style="color: #0000ff">here</span></a>.
  <span style="font-style: italic">                    </span>
- <span style="font-style: italic">metadata_timestamp  </span> 2 hours ago
+ <span style="font-style: italic">metadata_timestamp  </span> 4 hours ago
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">uri                 </span> https://gitlab.com/bring-indexes/binaries/-/raw/master/.bring/this.idx.br
  <span style="font-style: italic">                    </span>
@@ -282,12 +282,6 @@
     <span style="color: #005f00">- moving file into new temporary folder -&gt; </span><span style="color: #008000">done</span>
     <span style="color: #005f00">- validating package content -&gt; </span><span style="color: #008000">done</span>
   <span style="color: #000080">- merging files into new temporary folder -&gt; </span><span style="color: #008000">done</span>
-
-<span style="color: #808080; font-weight: bold">Result:</span>
-
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__iuh_la6r</span>':
-
-  <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre> <h3 id=install-arguments>Install arguments<a class=headerlink href=#install-arguments title="Permanent link">&para;</a></h3> <p>Arguments for the <code>install</code> sub-command are split into two parts:</p> <h4 id=target-related-arguments>'target'-related arguments<a class=headerlink href=#target-related-arguments title="Permanent link">&para;</a></h4> <p>The <code>install</code> command needs to know the name of the package to install, where to install it to, and as how (e.g. ignore existing files, overwrite them, etc.). Use the <code>--help</code> command line argument to display available options:</p> <div style=max-height:240px;overflow:auto> <div class=highlight><pre><span></span><code><span class=gp>&gt;</span> bring install --help
 <span class=go>Usage: bring install [OPTIONS] PACKAGE</span>
 
