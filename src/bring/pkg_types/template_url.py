@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-import copy
 import itertools
 import os
 from typing import Any, Dict, Iterable, List, Mapping, Union
 
 from bring.pkg_types import PkgType, PkgVersion
 from frkl.common.downloads.cache import calculate_cache_location_for_url
-from frkl.common.jinja_templating import process_string_template
 
 
 class TemplateUrlResolver(PkgType):
@@ -62,7 +60,11 @@ class TemplateUrlResolver(PkgType):
 
         _version_list: List[PkgVersion] = []
         for version in versions:
-            url = process_string_template(source_details["url"], copy.copy(version))
+            # print(version)
+            # print(source_details["url"])
+            # url = process_string_template(source_details["url"], copy.copy(version))
+            # print(url)
+            url = source_details["url"]
             target_file_name = os.path.basename(url)
 
             _vd: Dict[str, Any] = {}

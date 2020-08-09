@@ -1,14 +1,40 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Iterable, Mapping, Optional
+from typing import Any, Iterable, Mapping, Optional, Set
 
 from bring.doc.args import create_table_from_pkg_args
-from bring.pkg_types import PkgMetadata
+from bring.pkg_types import PkgMetadata, PkgVersion
 from frkl.common.doc import Doc
 from frkl.explain.explanation import Explanation
 from frkl.explain.explanations.utils import doc_to_table_rows
 from rich import box
 from rich.console import Console, ConsoleOptions, RenderResult
 from rich.table import Table
+
+
+def version_list_to_table(*versions: PkgVersion) -> Table:
+
+    all_version_names: Set[str] = set()
+    for version in versions:
+        all_version_names.update(version.vars.keys())
+
+    if "version" in all_version_names:
+        _sorted_vn = ["version"]
+        all_version_names.remove("version")
+        _sorted_vn.extend(sorted(all_version_names))
+    else:
+        _sorted_vn = sorted(all_version_names)
+
+    table = Table(show_header=True, box=box.SIMPLE)
+    for vn in _sorted_vn:
+        table.add_column(vn)
+
+    for version in versions:
+        row = []
+        for vn in _sorted_vn:
+            row.append(version.vars[vn])
+        table.add_row(*row)
+
+    return table
 
 
 class PkgExplanation(Explanation):
@@ -78,6 +104,12 @@ class PkgExplanation(Explanation):
             limit_allowed=self._limit_args,
         )
         yield args_table
+
+        if self.config_value("show_versions", False):
+
+            yield " [title]Available versions[/title]"
+            version_table = version_list_to_table(*self._pkg_metadata.versions)
+            yield version_table
 
         # if self.config_value("show_versions", True):
 

@@ -174,9 +174,15 @@ class BringInfoPkgsGroup(FrklBaseCommand):
             #     help="display full information on package args",
             #     is_flag=True,
             # )
+            @click.option(
+                "--show-versions",
+                "-v",
+                is_flag=True,
+                help="Show a list of all available versions.",
+            )
             @click.pass_context
             @handle_exc_async
-            async def command(ctx, package):
+            async def command(ctx, package, show_versions):
 
                 if (
                     package.endswith(DEFAULT_PKG_EXTENSION)
@@ -202,6 +208,7 @@ class BringInfoPkgsGroup(FrklBaseCommand):
                     md = PkgExplanation(
                         pkg_name=os.path.basename(package),
                         pkg_metadata=pkg_metadata,
+                        show_versions=show_versions,
                         **desc,
                     )
 
@@ -222,6 +229,7 @@ class BringInfoPkgsGroup(FrklBaseCommand):
                         info=vals["info"],
                         tags=vals["tags"],
                         labels=vals["labels"],
+                        show_versions=show_versions,
                     )
                     console.print(pkg_info)
 

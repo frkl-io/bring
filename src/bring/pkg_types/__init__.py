@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import copy
 import logging
 import os
@@ -21,7 +22,9 @@ from bring.defaults import (
 )
 from deepdiff import DeepHash
 from frkl.args.hive import ArgHive
+from frkl.common.args import parse_arg_type_string
 from frkl.common.dicts import dict_merge, get_seeded_dict
+from frkl.common.exceptions import FrklException
 from frkl.common.filesystem import ensure_folder
 from frkl.common.jinja_templating import (
     get_global_jinja_env,
@@ -492,8 +495,33 @@ class PkgType(metaclass=ABCMeta):
                 # print(new_mog)
                 version.steps = new_mog
 
+        source_args = _source_details.get("args", None)
+        _exploded_source_args = {}
+        if source_args:
+
+            if not isinstance(source_args, collections.abc.Mapping):
+                raise FrklException(
+                    msg="Can't parse package description.",
+                    reason=f"'args' value must be a dict: {source_args}",
+                )
+            for arg_name, arg_data in source_args.items():
+
+                if isinstance(arg_data, str):
+                    _arg_data: Mapping[str, Any] = parse_arg_type_string(
+                        arg_data, arg_type_key="type"
+                    )
+                elif isinstance(arg_data, collections.abc.Mapping):
+                    _arg_data = arg_data
+                else:
+                    raise FrklException(
+                        msg="Can't parse package description.",
+                        reason=f"Invalid value type '{type(arg_data)}' for argument '{arg_name}': must be either string or dict.",
+                    )
+
+                _exploded_source_args[arg_name] = _arg_data
+
         pkg_vars = await self.process_vars(
-            source_args=_source_details.get("args", None),
+            source_args=_exploded_source_args,
             pkg_args=pkg_args,
             mogrifiers=mogrifiers,
             source_vars=_source_details.get("vars", None),

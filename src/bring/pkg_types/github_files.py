@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import itertools
 import re
 from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 from bring.pkg_types import PkgType, PkgVersion
 from bring.utils.github import get_list_data_from_github
 from deepdiff import DeepHash
+from frkl.common.exceptions import FrklException
+from frkl.common.formats.serialize import serialize
+from frkl.common.regex import find_var_names_in_obj
 
 
 class GitFiles(PkgType):
@@ -37,6 +41,11 @@ class GitFiles(PkgType):
                 "type": "string",
                 "required": False,
                 "doc": "if provided, is used as regex to select wanted tags",
+            },
+            "template_vars": {
+                "type": "dict",
+                "required": False,
+                "doc": "An (optional) map with the possible template var names in the value for 'files' as keys, and all allowed values for each key as value.",
             },
             # "use_commits_as_versions": {
             #     "type": "boolean",
@@ -72,7 +81,38 @@ class GitFiles(PkgType):
         tag_filter: str = source_details.get("tag_filter", None)  # type: ignore
 
         use_commits = source_details.get("use_commits_as_versions", False)
+        template_vars = source_details.get("template_vars", {})
+
         files = source_details["files"]
+
+        template_var_names = find_var_names_in_obj(files)
+
+        missing = []
+        needed_template_vars: Dict[str, Any] = {}
+        for tvn in template_var_names:
+            if tvn not in template_vars.keys():
+                missing.append(tvn)
+            else:
+                needed_template_vars[tvn] = template_vars[tvn]
+                # TODO: check if value is list?
+
+        if missing:
+            example_source = dict(source_details)
+            for m in missing:
+                example_source.setdefault("template_vars", {})[m] = [
+                    "example_value_1",
+                    "example_value_2",
+                    "and_so_on",
+                ]
+
+            example_source_str = serialize(example_source, format="yaml", indent=4)
+            solution = f"Add the missing values to the 'template_vars' key:\n\n{example_source_str}"
+
+            raise FrklException(
+                msg="Can't create package versions for github_files type.",
+                reason=f"'files' value contains template keys, but values for those are not declared in 'template_vars': {', '.join(missing)}",
+                solution=solution,
+            )
 
         if use_commits:
             raise NotImplementedError("'use_commits_as_versions' is not supprted yet.")
@@ -108,13 +148,14 @@ class GitFiles(PkgType):
             if latest is None:
                 latest = tag_name
 
-            _v = create_pkg_version(
+            _v = create_pkg_versions(
                 user_name=github_user,
                 repo_name=repo_name,
                 version=tag_name,
                 files=files,
+                template_vars=needed_template_vars,
             )
-            versions.append(_v)
+            versions.extend(_v)
 
         branch_names: List[str] = []
         for b in branches:
@@ -124,13 +165,14 @@ class GitFiles(PkgType):
             if latest is None:
                 latest = "master"
 
-            _v = create_pkg_version(
+            _v = create_pkg_versions(
                 user_name=github_user,
                 repo_name=repo_name,
                 version="master",
                 files=files,
+                template_vars=needed_template_vars,
             )
-            versions.append(_v)
+            versions.extend(_v)
 
         for branch in branch_names:
             if branch == "master":
@@ -138,10 +180,14 @@ class GitFiles(PkgType):
             if latest is None:
                 latest = branch
 
-            _v = create_pkg_version(
-                user_name=github_user, repo_name=repo_name, version=branch, files=files
+            _v = create_pkg_versions(
+                user_name=github_user,
+                repo_name=repo_name,
+                version=branch,
+                files=files,
+                template_vars=needed_template_vars,
             )
-            versions.append(_v)
+            versions.extend(_v)
 
         result: Dict[str, Any] = {"versions": versions}
 
@@ -153,8 +199,48 @@ class GitFiles(PkgType):
         return result
 
 
+def create_pkg_versions(
+    user_name: str,
+    repo_name: str,
+    version: str,
+    files: Iterable[str],
+    template_vars: Mapping[str, Any],
+) -> Iterable[PkgVersion]:
+
+    # only one version is available
+    if not template_vars:
+        return [
+            create_pkg_version(
+                user_name=user_name, repo_name=repo_name, version=version, files=files
+            )
+        ]
+
+    # we need a matrix of all possible template var combinations
+    keys, values = zip(*template_vars.items())
+
+    versions = [dict(zip(keys, v)) for v in itertools.product(*values)]
+
+    _pkg_versions: List[PkgVersion] = []
+
+    for _pkg_version in versions:
+        _v = create_pkg_version(
+            user_name=user_name,
+            repo_name=repo_name,
+            version=version,
+            files=files,
+            **_pkg_version,
+        )
+        _pkg_versions.append(_v)
+
+    return _pkg_versions
+
+
 def create_pkg_version(
-    user_name: str, repo_name: str, version: str, files: Iterable[str]
+    user_name: str,
+    repo_name: str,
+    version: str,
+    files: Iterable[str],
+    **extra_vars: Any,
 ) -> PkgVersion:
 
     urls = []
@@ -165,9 +251,9 @@ def create_pkg_version(
         }
         urls.append(dl)
 
+    vars = dict(extra_vars)
+    vars["version"] = version
     _v = PkgVersion(
-        [{"type": "download_multiple_files", "urls": urls}],
-        vars={"version": version},
-        metadata={},
+        [{"type": "download_multiple_files", "urls": urls}], vars=vars, metadata={},
     )
     return _v
