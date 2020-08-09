@@ -2,7 +2,7 @@
 import logging
 import os
 import shutil
-from typing import Any, Dict, List, Mapping
+from typing import Any, Dict, List, Mapping, Optional
 
 import anyio
 import httpx
@@ -87,6 +87,7 @@ class DownloadMultipleFilesMogrifier(SimpleMogrifier):
 
             try_nr = 1
             success = False
+            last_error = Optional[Exception] = None
             while try_nr <= retries and not success:
 
                 try_nr = try_nr + 1
@@ -94,16 +95,30 @@ class DownloadMultipleFilesMogrifier(SimpleMogrifier):
                 try:
                     async with await aopen(temp_name, "wb") as f:
                         async with client.stream("GET", _url) as response:
+
+                            response.raise_for_status()
                             async for chunk in response.aiter_bytes():
                                 await f.write(chunk)
                     success = True
                 except Exception as e:
                     log.debug(f"Failed to download '{_url}': {e}", exc_info=True)
+                    status_code = None
+                    try:
+                        status_code = e.response.status_code  # type: ignore
+                    except Exception:
+                        pass
+                    if status_code == 404:
+                        break
                     if try_nr <= retries:
                         await anyio.sleep(retry_wait)
 
             if not success:
-                raise MogrifierException(self, msg=f"Error downloading '{_url}'")
+                reason = None
+                if last_error:
+                    reason = str(last_error)
+                raise MogrifierException(
+                    self, msg=f"Error downloading '{_url}'", reason=reason
+                )
 
             if os.path.exists(_cache_path):
                 os.unlink(temp_name)

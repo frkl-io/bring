@@ -16,7 +16,7 @@ class TemplateUrlResolver(PkgType):
 
     Examples:
         - binaries.kubectl
-        - binaries.mitmproxy
+        - binaries.helm
     """
 
     _plugin_name: str = "template_url"

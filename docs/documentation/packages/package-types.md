@@ -15,13 +15,20 @@ Name | Description | Type | Required | Default
 {% set hide = doc.get_metadata_value("hide", False) %}
 ## type: **``{{ pkg_name }}``**
 
-{{ doc.get_help('n/a') }}
+{{ doc.get_short_help('n/a') }}
 
 ### Args
 
 {{ arg_table(args) }}
 
 {% if examples %}
+
+{% if doc.get_help() %}
+### Description
+
+{{ doc.get_help() }}
+{% endif %}
+
 ### Examples
 {% for pkg_name, pkg in examples.items() %}
 

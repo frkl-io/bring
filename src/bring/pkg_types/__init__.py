@@ -698,7 +698,11 @@ class PkgType(metaclass=ABCMeta):
                     default = arg.default
                 else:
                     default = f"<{arg_name}_value>"
-                validated_input[arg_name] = {"value": default, "arg": arg.doc}
+                validated_input[arg_name] = {
+                    "value": default,
+                    "arg": arg.doc,
+                    "required": arg.required,
+                }
             else:
                 validated = arg.validate(value)
                 validated_input[arg_name] = {

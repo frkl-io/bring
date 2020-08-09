@@ -12,6 +12,17 @@ from frkl.common.regex import find_var_names_in_obj
 
 
 class GitFiles(PkgType):
+    """A package type to retrieve one or several files from aa git repository that is hosted on [GitHub](https://github.com).
+
+    This package type directly downloads the required files from GitHub, without downloading the repository itself first.
+
+    This way of accessing files is advantageous if you only need a few, small files, and the repository itself is on the larger side. If this is not the case, consider using the '*git_repo*' package type.
+
+    File-paths specified in the ``files`` argument can contain template place-holders (like: ``deploy/${provider}/config.json``). If that is the case, you need to provide a list of possible values for each of the included placeholders in the ``template_vars`` key (check the example below).
+
+    examples:
+      - kubernetes.ingress-nginx
+    """
 
     _plugin_name: str = "github_files"
     _plugin_supports: str = "github_files"

@@ -11,6 +11,10 @@ from pydriller import Commit, GitRepository
 class GitRepo(PkgType):
     """A package that represents a git repository and its content.
 
+    The only argument required is the git repository url. *bring* will download and cache (unless otherwise configured) the whole repo.
+
+    Depending on the repository size this might or might not be desirable. If the repository is large, and only one or a few files are wanted, it is probably better to use the ``git_files`` (or ``github_files``, ``gitlab_files``, ...) package type, as this only downloads the files needed. If one git repository is the shared source for multiple packages, this package type might be the better choice though, since it will be only downloaded and cached once, and retrieval of each of those packages is quicker (since the git repository is cached locally, and only a ``git checkout`` is necessary to retrieve a specific version).
+
     By default, all tags and branches will be used as version names. If '*use_commits_as_versions*' is set to '*true*',
     also the commit hashes will be used. An alias '*latest*' will be added, pointing to the latest tag, or, in case no
     tags exist, to the 'master' branch.
