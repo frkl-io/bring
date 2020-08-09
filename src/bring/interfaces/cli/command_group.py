@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import atexit
 import os
 from collections import Iterable
 from typing import Any, Mapping, Optional
@@ -114,6 +115,11 @@ class BringCommandGroup(FrklBaseCommand):
             logger_name="bring",
         )
         self._app_event_management.start_monitoring()
+
+        def stop_monitoring():
+            self._app_event_management.stop_monitoring(10)
+
+        atexit.register(stop_monitoring)
         self._freckles.set_app_event_management(self._app_event_management)
 
     @property
