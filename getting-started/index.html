@@ -60,12 +60,12 @@
                       using the default 'bring' merge strategy (save metadata about each
                       installed file, more information can be found <a href=https://bring.frkl.io/docs/reference/merging/ ><span style="color: #0000ff">here</span></a>.
  <span style="font-style: italic">                    </span>
- <span style="font-style: italic">metadata_timestamp  </span> 4 hours ago
+ <span style="font-style: italic">metadata_timestamp  </span> 7 hours ago
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">uri                 </span> https://gitlab.com/bring-indexes/binaries/-/raw/master/.bring/this.idx.br
  <span style="font-style: italic">                    </span>
  <span style="font-style: italic">defaults            </span> <span style="color: #268bd2; background-color: #fdf6e3">arch</span><span style="color: #657b83; background-color: #fdf6e3">: x86_64                                                               </span>
-                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az18                                                              </span>
+                      <span style="color: #268bd2; background-color: #fdf6e3">node</span><span style="color: #657b83; background-color: #fdf6e3">: fv-az68                                                              </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">os</span><span style="color: #657b83; background-color: #fdf6e3">: linux                                                                  </span>
                       <span style="color: #268bd2; background-color: #fdf6e3">target</span><span style="color: #657b83; background-color: #fdf6e3">: ~/.local/bring                                                     </span>
  <span style="font-style: italic">                    </span>
@@ -239,7 +239,7 @@
       ...<br>
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__e0gjewl8</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__1ribut8j</span>':
 
   <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre> <p>To have more fine-grained control of the version of the package to install, you have to use the <em>install</em> command...</p> <h3 id=with-arguments>... with arguments<a class=headerlink href=#with-arguments title="Permanent link">&para;</a></h3> <p>Packages often come in different flavours (e.g. which architecture, OS, etc.), as well as several versions, which can be specified in the <code>install</code> command after the package name. Depending on the <em>index</em> configuration, <code>bring</code> assumes certain default values which often make it so that no package arguments at all need to be provided.</p> <p>But, often it is advisable to, for example, specify the exact version of a package to install. If that is desired, you can use the <code>--help</code> parameter (after the package name) to get <code>bring</code> to display information about the supported arguments:</p> <div class=highlight><pre><span></span><code><span class=gp>&gt;</span> bring install binaries.fd --help
