@@ -32,7 +32,11 @@ class BringGitServiceRepo(object):
     def to_dict(self) -> Dict[str, Any]:
 
         result: Dict[str, Any] = {
-            "source": {"url": self.url, "use_commits_as_version": False, "type": "git"}
+            "source": {
+                "url": self.url,
+                "use_commits_as_version": False,
+                "type": "git_repo",
+            }
         }
         if self.info:
             result["info"] = self.info
