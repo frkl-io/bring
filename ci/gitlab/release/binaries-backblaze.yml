@@ -1,0 +1,11 @@
+.bring_release_binaries:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+
+bring_release_binaries_dev:
+  extends: .bring_release_binaries
+  only:
+    - develop
+  script:
+  - aws s3 cp --endpoint-url=https://s3.us-west-002.backblazeb2.com --content-type binary/octet-stream dist/linux-gnu/bring s3://develop/linux-gnu/bring
+  - aws s3 cp --endpoint-url=https://s3.us-west-002.backblazeb2.com --content-type binary/octet-stream dist/windows/bring.exe s3://develop/windows/bring.exe
