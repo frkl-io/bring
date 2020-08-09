@@ -140,11 +140,11 @@ elif [[ "${COOKIECUTTER_PROJECT_NAME}" != "{{ cookiecutter.exe_name }}" ]]; then
   PROJECT_NAME="${COOKIECUTTER_PROJECT_NAME}"
 fi
 
-DEFAULT_LINUX_DOWNLOAD_URL="https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/linux-gnu/${PROJECT_NAME}"
-DEFAULT_DARWIN_DOWNLOAD_URL="https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/darwin/${PROJECT_NAME}"
+DEFAULT_LINUX_DOWNLOAD_URL="https://dl.frkl.sh/file/${PROJECT_NAME}-dev/linux-gnu/${PROJECT_NAME}"
+DEFAULT_DARWIN_DOWNLOAD_URL="https://dl.frkl.sh/file/${PROJECT_NAME}-dev/darwin/${PROJECT_NAME}"
 
-DEV_LINUX_DOWNLOAD_URL="https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/linux-gnu/${PROJECT_NAME}"
-DEV_DARWIN_DOWNLOAD_URL="https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/darwin/${PROJECT_NAME}"
+DEV_LINUX_DOWNLOAD_URL="https://dl.frkl.sh/file/${PROJECT_NAME}-dev/linux-gnu/${PROJECT_NAME}"
+DEV_DARWIN_DOWNLOAD_URL="https://dl.frkl.sh/file/${PROJECT_NAME}-dev/darwin/${PROJECT_NAME}"
 
 FRKL_INSTALL_NAME="${PROJECT_NAME}"
 FRKL_EXECUTABLE_ALIASES="${PROJECT_NAME}"
