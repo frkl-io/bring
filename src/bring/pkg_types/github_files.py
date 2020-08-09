@@ -18,7 +18,7 @@ class GitFiles(PkgType):
 
     This way of accessing files is advantageous if you only need a few, small files, and the repository itself is on the larger side. If this is not the case, consider using the '*git_repo*' package type.
 
-    File-paths specified in the ``files`` argument can contain template place-holders (like: ``deploy/${provider}/config.json``). If that is the case, you need to provide a list of possible values for each of the included placeholders in the ``template_vars`` key (check the example below).
+    File-paths specified in the ``files`` argument can contain template place-holders (like: ``deploy/${provider}/config.json``). If that is the case, you need to provide a list of possible values for each of the included placeholders in the ``template_values`` key (check the example below).
 
     examples:
       - kubernetes.ingress-nginx
@@ -53,7 +53,7 @@ class GitFiles(PkgType):
                 "required": False,
                 "doc": "if provided, is used as regex to select wanted tags",
             },
-            "template_vars": {
+            "template_values": {
                 "type": "dict",
                 "required": False,
                 "doc": "An (optional) map with the possible template var names in the value for 'files' as keys, and all allowed values for each key as value.",
@@ -92,36 +92,36 @@ class GitFiles(PkgType):
         tag_filter: str = source_details.get("tag_filter", None)  # type: ignore
 
         use_commits = source_details.get("use_commits_as_versions", False)
-        template_vars = source_details.get("template_vars", {})
+        _template_values = source_details.get("template_values", {})
 
         files = source_details["files"]
 
-        template_var_names = find_var_names_in_obj(files)
+        template_value_names = find_var_names_in_obj(files)
 
         missing = []
-        needed_template_vars: Dict[str, Any] = {}
-        for tvn in template_var_names:
-            if tvn not in template_vars.keys():
+        needed_template_values: Dict[str, Any] = {}
+        for tvn in template_value_names:
+            if tvn not in _template_values.keys():
                 missing.append(tvn)
             else:
-                needed_template_vars[tvn] = template_vars[tvn]
+                needed_template_values[tvn] = _template_values[tvn]
                 # TODO: check if value is list?
 
         if missing:
             example_source = dict(source_details)
             for m in missing:
-                example_source.setdefault("template_vars", {})[m] = [
+                example_source.setdefault("template_values", {})[m] = [
                     "example_value_1",
                     "example_value_2",
                     "and_so_on",
                 ]
 
             example_source_str = serialize(example_source, format="yaml", indent=4)
-            solution = f"Add the missing values to the 'template_vars' key:\n\n{example_source_str}"
+            solution = f"Add the missing values to the 'template_values' key:\n\n{example_source_str}"
 
             raise FrklException(
                 msg="Can't create package versions for github_files type.",
-                reason=f"'files' value contains template keys, but values for those are not declared in 'template_vars': {', '.join(missing)}",
+                reason=f"'files' value contains template keys, but values for those are not declared in 'template_values': {', '.join(missing)}",
                 solution=solution,
             )
 
@@ -164,7 +164,7 @@ class GitFiles(PkgType):
                 repo_name=repo_name,
                 version=tag_name,
                 files=files,
-                template_vars=needed_template_vars,
+                template_values=needed_template_values,
             )
             versions.extend(_v)
 
@@ -181,7 +181,7 @@ class GitFiles(PkgType):
                 repo_name=repo_name,
                 version="master",
                 files=files,
-                template_vars=needed_template_vars,
+                template_values=needed_template_values,
             )
             versions.extend(_v)
 
@@ -196,7 +196,7 @@ class GitFiles(PkgType):
                 repo_name=repo_name,
                 version=branch,
                 files=files,
-                template_vars=needed_template_vars,
+                template_values=needed_template_values,
             )
             versions.extend(_v)
 
@@ -215,11 +215,11 @@ def create_pkg_versions(
     repo_name: str,
     version: str,
     files: Iterable[str],
-    template_vars: Mapping[str, Any],
+    template_values: Mapping[str, Any],
 ) -> Iterable[PkgVersion]:
 
     # only one version is available
-    if not template_vars:
+    if not template_values:
         return [
             create_pkg_version(
                 user_name=user_name, repo_name=repo_name, version=version, files=files
@@ -227,7 +227,7 @@ def create_pkg_versions(
         ]
 
     # we need a matrix of all possible template var combinations
-    keys, values = zip(*template_vars.items())
+    keys, values = zip(*template_values.items())
 
     versions = [dict(zip(keys, v)) for v in itertools.product(*values)]
 

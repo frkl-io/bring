@@ -36,7 +36,7 @@ class TemplateUrlResolver(PkgType):
     def get_args(self) -> Mapping[str, Any]:
 
         return {
-            "template_vars": {
+            "template_values": {
                 "type": "dict",
                 "required": True,
                 "doc": "A map with the possible template var names as keys, and all allowed values for each key as value.",
@@ -52,9 +52,9 @@ class TemplateUrlResolver(PkgType):
         self, source_details: Mapping[str, Any]
     ) -> Mapping[str, Any]:
 
-        vars = source_details["template_vars"]
+        template_values = source_details["template_values"]
 
-        keys, values = zip(*vars.items())
+        keys, values = zip(*template_values.items())
 
         versions = [dict(zip(keys, v)) for v in itertools.product(*values)]
 
