@@ -29,12 +29,15 @@ async def get_example_pkgs(
     pkgs: Dict[str, Mapping[str, Any]] = {}
 
     async def add_example(_pkg_name: str):
-        pkg = await bring.get_pkg(_pkg_name)
-        if pkg is None:
-            log.warning(f"Can't retrieve package '{_pkg_name}")
+        try:
+            pkg = await bring.get_pkg(_pkg_name)
+            if pkg is None:
+                log.warning(f"Can't retrieve package '{_pkg_name}")
 
-        vals: Mapping[str, Any] = await pkg.get_values(resolve=True)  # type: ignore
-        pkgs[_pkg_name] = vals
+            vals: Mapping[str, Any] = await pkg.get_values(resolve=True, raise_exception=True)  # type: ignore
+            pkgs[_pkg_name] = vals
+        except Exception:
+            log.error(f"Can't retrieve example for pkg '{_pkg_name}'.", exc_info=True)
 
     async with create_task_group() as tg:
 
