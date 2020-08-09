@@ -26,9 +26,11 @@ Documentation still to be done.
 
 ### Binaries
 
-  - [Linux](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/linux-gnu/bring)
-  - [Windows](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/windows/bring.exe)
-  - [Mac OS X](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/darwin/bring)
+  - development versions:
+
+    - [Linux](https://dl.frkl.sh/file/bring-dev/linux-gnu/bring)
+    - [Windows](https://dl.frkl.sh/file/bring-dev/windows/bring.exe)
+    - [Mac OS X](https://dl.frkl.sh/file/bring-dev/darwin/bring)
 
 
 # Development
