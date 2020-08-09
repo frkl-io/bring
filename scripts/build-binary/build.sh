@@ -122,12 +122,12 @@ function install_requirements () {
     pip install "pyinstaller==${pyinstaller_version}"
 
     if [ -n "${requirements_file}" ]; then
-        pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev -r "${requirements_file}"
+        pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -r "${requirements_file}"
     fi
 
     pip install git+https://gitlab.com/frkl/frkl.project_meta.git
 
-    pip install -U --upgrade-strategy eager --extra-index-url https://pkgs.frkl.io/frkl/dev "${project_root}[all, build]"
+    pip install -U --upgrade-strategy eager --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi "${project_root}[all, build]"
 
     deactivate
 

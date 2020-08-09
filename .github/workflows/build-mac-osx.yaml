@@ -20,7 +20,7 @@ jobs:
           python-version: "${{ matrix.python_version }}"
       - uses: actions/checkout@v2
       - name: install requirements
-        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev -e '.[testing,all]'
+        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -e '.[testing,all]'
       - name: Test with pytest
         run: make test
 
@@ -37,7 +37,7 @@ jobs:
           python-version: "${{ matrix.python_version }}"
       - uses: actions/checkout@v2
       - name: install requirements
-        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev -e '.[testing,all]'
+        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -e '.[testing,all]'
       - name: Test with mypy
         run: make mypy
 
@@ -51,10 +51,9 @@ jobs:
           python-version: 3.8
       - uses: actions/checkout@v2
       - name: install requirements
-        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev -e '.[testing,all]'
+        run: pip install -U --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -e '.[testing,all]'
       - name: Test with flake8
         run: make flake
-
 
 
 

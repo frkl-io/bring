@@ -77,7 +77,7 @@ init: clean ## install the package to the active Python's site-packages
 	git init
 	git checkout -b develop || true
 	pip install -U pip
-	pip install --extra-index-url https://pkgs.frkl.io/frkl/dev -U -e '.[all-dev]'
+	pip install --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -U -e '.[all-dev]'
 	pre-commit install
 	git add "*" ".*"
 	pre-commit run --all-files || true
