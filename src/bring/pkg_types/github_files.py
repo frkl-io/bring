@@ -12,7 +12,7 @@ from frkl.common.regex import find_var_names_in_obj
 
 
 class GitFiles(PkgType):
-    """A package type to retrieve one or several files from aa git repository that is hosted on [GitHub](https://github.com).
+    """A package type to retrieve one or several files from a git repository that is hosted on [GitHub](https://github.com).
 
     This package type directly downloads the required files from GitHub, without downloading the repository itself first.
 

@@ -57,9 +57,7 @@ def define_env(env):
         return vals
 
     pandoc_details = wrap_async_task(get_package_details, "binaries.pandoc")
-    import pp
 
-    pp(pandoc_details)
     env.variables["pandoc_details"] = pandoc_details
 
     print("done.")

@@ -17,7 +17,7 @@ Name | Description | Type | Required | Default
 
 {{ doc.get_short_help('n/a') }}
 
-### Args
+### Arguments
 
 {{ arg_table(args) }}
 
