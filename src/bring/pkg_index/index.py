@@ -247,8 +247,9 @@ class BringIndexTing(InheriTing, SimpleTing):
         result = {}
 
         async def get_value(_pkg: PkgTing, _vn):
-            _vals = await _pkg.get_values(*_vn)
+            vals: Mapping[str, Any] = await _pkg.get_values(*_vn, resolve=True)  # type: ignore
 
+            _vals = dict(vals)
             if serializeable:
                 if "metadata" in value_names:
                     md: PkgMetadata = _vals["metadata"]
