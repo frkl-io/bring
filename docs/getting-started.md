@@ -10,18 +10,13 @@ Before getting started with *bring*, it is important to understand two concepts:
 **package**
 :    A *bring* package is metadata that describes how to get a specific version of a file or set of files onto your machine; those files are usually remote, and not managed by yourself. Examples of the type of files where this makes sense are, for example: *single-file binaries*, *configuration files*, *kubernetes manifests*.
 
-     More details about packages -- including how to create your own -- can be found [here](/documentation/packages/overview).
-
 **index**
 :    An index is a collection that contains packages, which usually share a category or are somehow else related (e.g. single-file binaries, dotfiles, ...). An index has a (namespaced) unique name (e.g. ``binaries``, ``gitlab.bring-indexes.example``, ...); within an index packages are referred to by name. This allows you to address any package managed by *bring* with a single string of the format ``<index_name>.<package_name>``, e.g.:
 
        - [``binaries.fd``](https://gitlab.com/bring-indexes/binaries/-/blob/master/terminal/filesystem/fd.pkg.br) (installs a *fd* release binary from [here](https://github.com/sharkdp/fd/releases))
        - [``gitlab.bring-indexes.example-index.pandoc``](https://gitlab.com/bring-indexes/example/-/blob/master/pandoc.pkg.br) (installs a *pandoc* release binary from [here](https://github.com/jgm/pandoc/releases))
 
-    *bring* supports different type of indexes, some auto-generated, some manually crafted. Check out the [index documentation](/documentation/indexes/overview) for more details.
-
-
-For the purpose of this getting-started guide we'll mainly use the packages and indexes that are "shipped" with *bring*. It is important to know though -- and this is where *bring* starts to become really useful -- that you can easily create your own. So make sure to check out the [*bring* documentation](/documentation/overview) after finishing this guide.
+    For the purpose of this getting-started guide we'll only use the packages and indexes that are "shipped" with *bring*. Check the [documentation](/documentation/overview) for more advanced usage.
 
 
 ### List default indexes
