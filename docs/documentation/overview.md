@@ -1,6 +1,5 @@
 ---
 title: bring documentation overview
-nav: false
 ---
 
 ## Concepts

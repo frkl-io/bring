@@ -24,7 +24,7 @@ markdown_extensions:
     guess_lang: false
 - toc:
     permalink: true
-    toc_depth: 3
+    toc_depth: 4
 - pymdownx.snippets:
     base_path: docs
 - pymdownx.highlight:
@@ -49,9 +49,13 @@ extra:
       link: https://github.com/frkl-io/bring
 
 nav:
-- Home: index.md
+- Home:
+    - Welcome: index.md
+    - About: about.md
 - Getting started:
-  - Getting started: getting-started.md
+  - Overview: getting-started/overview.md
+  - Getting information: getting-started/information.md
+  - Installing packages: getting-started/installing-packages.md
 - Documentation:
     - Overview: documentation/overview.md
     - Installation: documentation/install.md
