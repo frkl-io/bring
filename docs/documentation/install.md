@@ -6,10 +6,11 @@ There are three ways to install *bring* on your machine. Via a manual binary dow
 
 To install `bring`, download the appropriate binary from one of the links below, and set the downloaded file to be executable (``chmod +x bring``):
 
-  - [Linux](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/linux-gnu/bring)
-  - [Windows](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/windows/bring.exe)
-  - [Mac OS X](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/darwin/bring)
+  - [Linux](https://dl.frkl.sh/file/bring-dev/linux-gnu/bring)
+  - [Mac OS X](https://dl.frkl.sh/file/bring-dev/darwin/bring)  (not tested much)  
+  - [Windows](https://dl.frkl.sh/file/bring-dev/windows/bring.exe)  (not tested at all)
 
+**Note**: Currently, only development versions are available.
 
 ## Install script
 

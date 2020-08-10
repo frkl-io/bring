@@ -246,7 +246,7 @@ class BringIndexTing(InheriTing, SimpleTing):
 
         result = {}
 
-        async def get_value(_pkg, _vn):
+        async def get_value(_pkg: PkgTing, _vn):
             _vals = await _pkg.get_values(*_vn)
 
             if serializeable:

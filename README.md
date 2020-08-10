@@ -29,8 +29,8 @@ Documentation still to be done.
   - development versions:
 
     - [Linux](https://dl.frkl.sh/file/bring-dev/linux-gnu/bring)
-    - [Windows](https://dl.frkl.sh/file/bring-dev/windows/bring.exe)
-    - [Mac OS X](https://dl.frkl.sh/file/bring-dev/darwin/bring)
+    - [Mac OS X](https://dl.frkl.sh/file/bring-dev/darwin/bring)  (not tested much)  
+    - [Windows](https://dl.frkl.sh/file/bring-dev/windows/bring.exe)  (not tested at all)
 
 
 # Development

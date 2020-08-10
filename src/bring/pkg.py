@@ -585,10 +585,6 @@ class DynamicPkgTing(PkgTing):
                 seed_data.get("labels", None), labels, merge_strategy="update"
             )
 
-        # if "tags" in value_names:
-        #     tags = requirements.get("tags", [])
-        #     result["tags"] = tags
-
         if "tags" in value_names:
             result["tags"] = requirements.get("tags", [])
             parent_tags: Iterable[str] = seed_data.get("tags", None)

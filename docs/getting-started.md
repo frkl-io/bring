@@ -1,7 +1,6 @@
 ---
 template: no_left_nav.html
 title: Getting started with bring
-nav: false
 ---
 
 Before getting started with *bring*, it is important to understand two concepts:

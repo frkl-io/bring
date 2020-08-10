@@ -11,6 +11,7 @@ from bring.defaults import bring_app_dirs as project_dirs
 from bring.doc.plugins import get_all_pkg_type_explanations
 from freckles.core.freckles import Freckles
 from frkl.args.arg import ScalarArg
+from frkl.common.async_utils import wrap_async_task
 from frkl.common.downloads.cache import calculate_cache_location_for_url
 from frkl.common.formats.serialize import serialize
 from frkl.explain.explanations.exception import ExceptionExplanation
@@ -41,6 +42,26 @@ def define_env(env):
 
     print("retrieving pkg type explanations...")
     env.variables["pkg_types"] = get_all_pkg_type_explanations(bring)
+    env.variables["bring"] = bring
+
+    async def get_package_details(pkg_name):
+        pkg = await bring.get_pkg("binaries.pandoc")
+        vals = await pkg.get_values()
+
+        full_data = {}
+        full_data["info"] = vals["info"]
+        full_data["tags"] = vals["tags"]
+        full_data["labels"] = vals["labels"]
+        full_data["source"] = vals["source"]
+        vals["full"] = full_data
+        return vals
+
+    pandoc_details = wrap_async_task(get_package_details, "binaries.pandoc")
+    import pp
+
+    pp(pandoc_details)
+    env.variables["pandoc_details"] = pandoc_details
+
     print("done.")
 
     def get_cache_key(key: str, *command: str):
