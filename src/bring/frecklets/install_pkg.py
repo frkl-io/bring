@@ -3,7 +3,6 @@
 import collections
 import copy
 import logging
-import os
 import tempfile
 from typing import TYPE_CHECKING, Any, Dict, List, Mapping, MutableMapping, Optional
 
@@ -12,13 +11,9 @@ from bring.frecklets import BringFrecklet, parse_target_data
 from bring.mogrify import Transmogrificator
 from bring.mogrify.transform_folder import PkgContentLocalFolder
 from bring.pkg import PkgTing
-from bring.pkg_index.index import BringIndexTing
 from bring.utils.pkg_spec import PkgSpec
-from freckles.core.frecklet import FreckletException, FreckletVar
+from freckles.core.frecklet import FreckletVar
 from frkl.args.arg import RecordArg
-from frkl.common.formats.auto import AutoInput
-from frkl.common.formats.serialize import to_value_string
-from frkl.common.strings import generate_valid_identifier
 from frkl.explain.explanation import Explanation
 from frkl.targets.local_folder import TrackingLocalFolder
 from frkl.tasks.exceptions import FrklTaskRunException
@@ -308,92 +303,19 @@ class BringInstallFrecklet(BringFrecklet):
 
         if self.current_amount_of_inputs == 0:
 
-            defaults = {}
-
             pkg_input = input_vars["pkg"].value
-            pkg_index: Optional[BringIndexTing] = None
-            pkg: Optional[PkgTing] = None
-            pkg_metadata: Dict[str, Any] = {}
 
-            if isinstance(pkg_input, str):
-                _result = await self._bring.get_pkg_and_index(pkg_input)
-                if _result is not None:
-                    pkg_metadata = {"name": _result[0].name, "index": _result[1].id}  # type: ignore
-                    pkg = _result[0]
-                    pkg_index = _result[1]
+            data = await self.create_pkg_data(pkg_input=pkg_input)
 
-                else:
-                    full_path = os.path.abspath(os.path.expanduser(pkg_input))
-                    ai = AutoInput(full_path)
-                    content = await ai.get_content_async()
-                    if "source" in content.keys():
-                        defaults["pkg"] = content["source"]
-                        ting_name = content.get("info", {}).get("name", None)
-                        if ting_name is None:
-                            ting_name = generate_valid_identifier(pkg_input)
-                        pkg = self.tingistry.create_ting(  # type: ignore
-                            "bring.types.dynamic_pkg",
-                            ting_name=f"{self.full_name}.{ting_name}",
-                        )
-                        pkg.set_input(**content)  # type: ignore
-                        pkg_metadata = {"source": content["source"]}
-            elif isinstance(pkg_input, Mapping):
-
-                if "source" in pkg_input.keys():
-                    _data = pkg_input["source"]
-                    defaults["pkg"] = _data
-                elif "type" not in pkg_input:
-                    # TODO: references
-                    _r = to_value_string(pkg_input, reindent=4)
-                    raise FreckletException(
-                        frecklet=self,
-                        msg="Can't create package from provided input dict.",
-                        reason=f"Input data does not contain a 'type' key:\n\n{_r}",
-                    )
-                else:
-                    _data = pkg_input
-
-                ting_name = pkg_input.get("info", {}).get("name", None)
-
-                if ting_name is None:
-                    ting_name = generate_valid_identifier()
-                pkg = self.tingistry.create_ting(  # type: ignore
-                    "bring.types.dynamic_pkg", ting_name=f"{self.full_name}.{ting_name}"
-                )
-                pkg.set_input(**pkg_input)  # type: ignore
-                pkg_metadata = {"source": pkg_input["source"]}
-
-            if pkg is None:
-                input_str = to_value_string(pkg_input, reindent=4)
-
-                reason = f"Invalid input:\n\n{input_str}"
-                raise FreckletException(
-                    frecklet=self,
-                    msg="Can't create package from provided input.",
-                    reason=reason,
-                    solution="Either provide a valid package name string, a pkg description map, or a path to a file containing one.",
-                )
+            pkg: PkgTing = data["pkg"]
+            pkg_metadata: Dict[str, Any] = data["pkg_metadata"]
+            defaults: Dict[str, FreckletVar] = data["defaults"]
+            # pkg_index: Optional[BringIndexTing] = data["index"]
 
             self.set_processed_input("pkg", pkg)
             self.set_processed_input("pkg_metadata", pkg_metadata)
 
             self._msg = f"installing package '{pkg.name}'"
-
-            if pkg_index:
-
-                index_defaults = await pkg_index.get_index_defaults()
-                # index_defaults = await pkg.bring_index.get_index_defaults()
-                for k, v in index_defaults.items():
-                    defaults[k] = FreckletVar(v, origin="index defaults")
-
-            bring_defaults = await self._bring.get_defaults()
-            for k, v in bring_defaults.items():
-                if k not in defaults.keys():
-                    defaults[k] = v
-            pkg_defaults = await pkg.get_pkg_defaults()
-            for k, v in pkg_defaults.items():
-                if k not in defaults.keys():
-                    defaults[k] = FreckletVar(v, origin="package defaults")
 
             # we don't want defaults overwrite inputs in this case
             for k in input_vars.keys():

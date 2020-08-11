@@ -1,6 +1,6 @@
 {
     "template": "https://gitlab.com/frkl/frkl.python-project.git",
-    "commit": "7a86becd5486848dcf100802bace4e2659919500",
+    "commit": "0669e52fb528f426915be6d3b7f1dc4ec650933c",
     "context": {
         "cookiecutter": {
             "full_name": "Markus Binsteiner",
@@ -12,5 +12,6 @@
             "project_short_description": "Package manager for files and file-sets.",
             "_template": "https://gitlab.com/frkl/frkl.python-project.git"
         }
-    }
+    },
+    "directory": ""
 }

@@ -1,41 +1,53 @@
 # -*- coding: utf-8 -*-
-# from typing import TYPE_CHECKING, Any, Iterable, Mapping, Optional, Union
-#
-# from bring.frecklets import BringFrecklet
-# from bring.pkg_index.pkg import PkgTing
-# from frkl.args.arg import Arg
-# from frkl.common.exceptions import FrklException
-# from frkl.tasks.task import Task
-# from tings.common.templating import TemplaTing, TemplaTingRepo
-#
-#
-# if TYPE_CHECKING:
-#     from freckles.core.frecklet import Frecklet
-#
-#
-# class BringTemplateFrecklet(BringFrecklet):
-#     async def get_base_args(self) -> Mapping[str, Union[str, Arg, Mapping[str, Any]]]:
-#
-#         return {
-#             "templates_pkg": {
-#                 "type": "string",
-#                 "required": True,
-#                 "doc": "a list of packages to install",
-#                 "default": "collections.templates",
-#             },
-#             "template": {
-#                 "type": "string",
-#                 "required": True,
-#                 "doc": "the name of the template to render",
-#             },
-#             "target": {"type": "string", "doc": "the target folder", "required": False},
-#             "target_config": {
-#                 "type": "dict",
-#                 "doc": "(optional) target configuration",
-#                 # TODO: reference
-#                 "required": False,
-#             },
-#         }
+from typing import TYPE_CHECKING, Any, Mapping, Union
+
+from bring.frecklets import BringFrecklet
+from frkl.args.arg import Arg
+
+
+if TYPE_CHECKING:
+    from freckles.core.frecklet import FreckletVar
+
+
+class BringTemplateFrecklet(BringFrecklet):
+    async def get_base_args(self) -> Mapping[str, Union[str, Arg, Mapping[str, Any]]]:
+
+        return {
+            "templates_pkg": {
+                "type": "string",
+                "required": True,
+                "doc": "a list of packages to install",
+                "default": "collections.templates",
+            },
+            "template": {
+                "type": "string",
+                "required": True,
+                "doc": "the name of the template to render",
+            },
+            "target": {"type": "string", "doc": "the target folder", "required": False},
+            "target_config": {
+                "type": "dict",
+                "doc": "(optional) target configuration",
+                # TODO: reference
+                "required": False,
+            },
+        }
+
+    async def input_received(self, **input_vars: "FreckletVar") -> Any:
+
+        if self.current_amount_of_inputs == 0:
+            return None
+
+        # data = input_vars["data"].value
+        # bring_assembly = await BringAssembly.create_from_string(self._bring, data)
+        #
+        # self.set_processed_input("assembly", bring_assembly)
+        #
+        # args = await bring_assembly.get_required_args()
+        #
+        # return self._bring.arg_hive.create_record_arg(childs=args)
+
+
 #
 #     async def get_required_args(
 #         self, **base_vars: Any
