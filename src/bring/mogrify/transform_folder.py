@@ -6,7 +6,6 @@ from typing import Any, Iterable, Mapping, MutableMapping, Optional, Union
 
 from bring.mogrify import SimpleMogrifier
 from bring.utils.pkg_spec import PATH_KEY, PkgSpec
-from frkl.common.exceptions import FrklException
 from frkl.common.filesystem import ensure_folder
 from frkl.targets.local_folder import LocalFolder, log
 from frkl.targets.target import MetadataFileItem, TargetItem
@@ -38,7 +37,7 @@ class PkgContentLocalFolder(LocalFolder):
         merge_config: Mapping[str, Any],
     ) -> Optional[MutableMapping[str, Any]]:
 
-        item_matches = self.pkg_spec.get_item_details(item_id)
+        item_matches = self.pkg_spec.get_source_item_details(item_id)
 
         for item_details in item_matches:
             if not item_details:
@@ -47,19 +46,15 @@ class PkgContentLocalFolder(LocalFolder):
                 return None
 
             target_id = item_details[PATH_KEY]
+            target_path = os.path.join(self.path, target_id)
 
-            if self.pkg_spec.flatten:
-                target_path = os.path.join(self.path, os.path.basename(target_id))
-            else:
-                target_path = os.path.join(self.path, target_id)
-
-            if self.pkg_spec.single_file:
-                childs = os.listdir(self.path)
-                if childs:
-                    raise FrklException(
-                        msg=f"Can't merge item '{item_id}'.",
-                        reason=f"Package is marked as single file, and target path '{self.path}' already contains a child.",
-                    )
+            # if self.pkg_spec.single_file:
+            #     childs = os.listdir(self.path)
+            #     if childs:
+            #         raise FrklException(
+            #             msg=f"Can't merge item '{item_id}'.",
+            #             reason=f"Package is marked as single file, and target path '{self.path}' already contains a child.",
+            #         )
 
             ensure_folder(os.path.dirname(target_path))
 
@@ -106,7 +101,7 @@ class FolderContentMogrifier(SimpleMogrifier):
         "folder_path": "list",
         "files": "list?",
         "pkg_vars": "dict?",
-        "pkg_spec": "dict?",
+        "pkg_spec": "any?",
     }
 
     _provides: Mapping[str, str] = {"folder_path": "string", "files": "list"}
