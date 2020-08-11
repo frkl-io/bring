@@ -68,12 +68,12 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.pyenv/
-          key: ${{ runner.os }}-target-darwin-10.11-bring-python-build-v6
+          key: ${{ runner.os }}-target-darwin-10.11-bring-python-build-v7
       - run: brew install pyenv
       - run: brew install pyenv-virtualenv
       - uses: actions/checkout@v2
       - name: build_binary
-        run: ./scripts/build-binary/build.sh --spec-file scripts/build-binary/onefile.spec --python-version "3.7.8"
+        run: ./scripts/build-binary/build.sh --spec-file scripts/build-binary/onefile.spec --python-version "3.8.5" --pyinstaller-version "4.0"
       - name: Add MacOS certs
         run: chmod +x ./scripts/build-binary/add-osx-cert.sh && ./scripts/build-binary/add-osx-cert.sh
         env:
