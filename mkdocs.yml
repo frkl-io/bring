@@ -49,9 +49,9 @@ extra:
       link: https://github.com/frkl-io/bring
 
 nav:
-- Home:
-    - Welcome: index.md
-    - About: about.md
+#- Home:
+#    - Welcome: index.md
+#    - About: about.md
 - Getting started:
   - Overview: getting-started/overview.md
   - Getting information: getting-started/information.md

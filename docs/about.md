@@ -1,6 +1,12 @@
+
 ## Why you shouldn't use *bring*
 
 In the interest of not wasting your time, nor mine, here's a list of reasons to help you decide whether *you* should or should not try out *bring*. I do hope this list will get shorter over time though, so maybe check back here every now and then if you are 'interested in principle'...  
+
+## Missing features
+
+- no hashes for downloaded files supported (yet)
+- no support for secret values like passwords, access tokens, etc (yet)
 
 ### State of the code
 
@@ -13,7 +19,7 @@ Currently *bring* is in a late alpha state, I'd say. It's usable, and works most
 
 ### Design and technologies used
 
-*bring* is written in object-oriented Python. It is over-engineered for what it is, with quite a few abstract class-hierarchies and other (arguable) 'anti-patterns' that could have been avoided if one was interested in more compact and maintainable code. I chose this design deliberately and am well aware of the disadvantages some of those decisions bring with them. *bring* is really only a side-product for a bigger application I have in mind, which is the main reason for most of kind of the decisions I mentioned. So, if a terse and minimal code-base is important to you, *bring* is most likely not for you...  
+*bring* is written in object-oriented Python. It is -- some wil/might say -- over-engineered for what it is, with quite a few abstract class-hierarchies and other (arguable) 'anti-patterns' that could have been avoided if one was interested in more compact and maintainable code. I chose this design and its trade-offs deliberately, and am well aware of the disadvantages some of those decisions bring with them. *bring* is really only a side-product for a bigger application I have in mind, which is the main reason for most of kind of the decisions I mentioned. So, if a terse and minimal code-base with hardly any levels of abstractions is important to you, *bring* is most likely not for you...  
 
 *bring* uses 'async'. A lot. That wasn't a deliberate decision when I started out, but I figured it can't hurt and since it's fully supported now... And then one thing lead to another, one 'async' function required the parent to also be 'async', and so on... So, after writing a lot of code I'm not so sure anymore whether I should have been more conservative and just use threading, or if the alternative would have been much worse, with race-conditions all over the place... Overall, I'm happy enough how the code turned out, so I'm not going to change anything now. And speed-wise I think *bring* does fairly well, for a Python application. But still, I can see how people could have strong opinions about something like this, so I thought I'd mention it.
 
