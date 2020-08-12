@@ -1,32 +1,48 @@
 ---
-{% if info %}info:
-  slug: {{ info.get('slug', '<package_description>') }}
-  homepage: {{ info.get('homepage', 'https://example.com') }}
+{% if info %}{{ {"info": info} | to_yaml(readable=True) }}
 {% else %}# info:
 #   slug: <package_description>
 #   homepage: 'https://example.com'
 {% endif %}
-# tags:
+{% if not tags %}# tags:
 #  - <tag1>
 #  - <tag2>
-
-# labels:
+{% else %}tags:
+{% for t in tags %}  - {{ t }}
+{% endfor %}{% endif %}
+{% if not labels %}# labels:
+#   <key>: <value>
+#   # e.g.:
 #   language: <language>
+{% else %}labels:
+{% for k, v in labels.items() %}  {{ k }}: "{{ v }}"
+{% endfor %}{% endif %}
 
 source:
+
   type: {{ pkg_type }}
-{% for arg_name, details in args.items() %}{% if not details['required'] %}#{% endif %}  {{ arg_name }}: "{{ details['value'] }}"{{ "        # optional" if not details['required'] }}
+
+{% if input_values %}{{ input_values | to_yaml(readable=True, indent=2) }}{% endif %}
+{% for arg_name, details in args.items() %}  {% if not details['required'] %}# {% endif %}{{ arg_name }}: {{ details['value']  }}{{ "        # optional" if not details['required'] else "        # required"}}
 {% endfor %}
 #  aliases:
 #    <var_name>:
 #      <alias>: <actual_value>
 #      <alias_2>: <actual_value_2>
+#    # e.g.:
 #    arch:
 #      x86_64: x86-64
 
 #  artefact:
+#    # possible values: file, folder, archive
 #    type: archive
 
 #  transform:
-#    items:
-#      <target_file>: <orig_file>
+#    # filter by path of the original source file
+#    - <orig_file>
+#    # or, filter original source file, but rename/move
+#    - <orig_file>: <target_path>
+#    # or, filter original source file, but rename/move and/or change file mode
+#    - from: <orig_file>
+#      path: <target_path>
+#      mode: '0755'

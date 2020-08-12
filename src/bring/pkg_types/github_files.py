@@ -4,7 +4,7 @@ import re
 from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 from bring.pkg_types import PkgType, PkgVersion
-from bring.utils.github import get_list_data_from_github
+from bring.utils.github import get_github_project_data, get_list_data_from_github
 from deepdiff import DeepHash
 from frkl.common.exceptions import FrklException
 from frkl.common.formats.serialize import serialize
@@ -47,7 +47,11 @@ class GitFiles(PkgType):
                 "required": True,
                 "doc": "The github repo name.",
             },
-            "files": {"type": "list", "doc": "The list of files to retrieve."},
+            "files": {
+                "type": "string",
+                "doc": "The list of files to retrieve.",
+                "multiple": True,
+            },
             "tag_filter": {
                 "type": "string",
                 "required": False,
@@ -207,6 +211,23 @@ class GitFiles(PkgType):
             aliases["version"]["latest"] = latest
             result["aliases"] = aliases
 
+        return result
+
+    async def guess_pkg_data(self, **user_input: Any) -> Mapping[str, Any]:
+
+        if "user_name" not in user_input.keys() or "repo_name" not in user_input.keys():
+
+            return {}
+
+        data = await get_github_project_data(
+            user=user_input["user_name"], repo=user_input["repo_name"]
+        )
+
+        result = {
+            "info": data.get("info", {}),
+            "labels": data.get("labels", {}),
+            "tags": data.get("tags", []),
+        }
         return result
 
 

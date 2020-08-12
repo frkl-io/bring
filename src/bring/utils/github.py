@@ -113,3 +113,33 @@ async def get_data_from_github(
         raise FrklException(
             msg=f"Can't retrieve data from github for: {path}", parent=e
         )
+
+
+async def get_github_project_data(user: str, repo: str) -> Mapping[str, Any]:
+
+    request_path = f"/repos/{user}/{repo}"
+
+    data = await get_data_from_github(path=request_path)
+
+    slug = data["description"]
+    homepage = data["homepage"]
+    if not homepage:
+        homepage = data["html_url"]
+
+    language = data.get("language", None)
+    urls = {}
+    url = data.get("downloads_url", None)
+    if url:
+        urls["downloads"] = url
+    url = data["issues_url"].replace("{/number}", "")
+    if url:
+        urls["issues"] = url
+
+    result = {
+        "info": {"slug": slug, "homepage": homepage, "urls": urls},
+    }
+
+    if language:
+        result.setdefault("labels", {})["language"] = language
+
+    return result

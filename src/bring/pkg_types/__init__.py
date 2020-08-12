@@ -21,17 +21,19 @@ from bring.defaults import (
     PKG_RESOLVER_DEFAULTS,
 )
 from deepdiff import DeepHash
+from frkl.args.arg import find_scalar_type
 from frkl.args.hive import ArgHive
 from frkl.common.args import parse_arg_type_string
 from frkl.common.dicts import dict_merge, get_seeded_dict
 from frkl.common.exceptions import FrklException
 from frkl.common.filesystem import ensure_folder
 from frkl.common.jinja_templating import (
-    get_global_jinja_env,
+    create_jinja_environment,
     get_template_schema,
     process_string_template,
     template_schema_to_args,
 )
+from frkl.common.jinja_templating.filters import ALL_FRTLS_FILTERS
 from frkl.common.regex import find_var_names_in_obj, replace_var_names_in_obj
 from frkl.common.strings import from_camel_case
 from jinja2 import Environment
@@ -211,7 +213,9 @@ class PkgType(metaclass=ABCMeta):
     def _jinja_env(self) -> Environment:
 
         if self._jinja_env_obj is None:
-            self._jinja_env_obj = get_global_jinja_env(env_type="default")
+            self._jinja_env_obj = create_jinja_environment(env_type="native")
+            for name, filter in ALL_FRTLS_FILTERS.items():
+                self._jinja_env_obj.filters[name] = filter["func"]
         return self._jinja_env_obj
 
     def get_unique_source_id(self, source_details: Mapping[str, Any]) -> str:
@@ -583,7 +587,7 @@ class PkgType(metaclass=ABCMeta):
         aliases: Mapping[str, Mapping[str, str]],
     ) -> Mapping[str, Any]:
         """Return the (remaining) args a user can specify to select a version or mogrify options.
-
+        #
         Source args can contain more arguments than will eventually be used/displayed to the user.
 
         Args:
@@ -689,31 +693,46 @@ class PkgType(metaclass=ABCMeta):
         arg_dict = self.get_args()
 
         args = self._arg_hive.create_record_arg(arg_dict, remove_required=True)
-        validated_input: Dict[str, Any] = {}
+
+        user_input: Dict[str, Any] = {}
         for arg_name, arg in args.childs.items():
 
             value = kwargs.get(arg_name, None)
             if value is None:
-                if arg.default:
-                    default = arg.default
-                else:
-                    default = f"<{arg_name}_value>"
-                validated_input[arg_name] = {
-                    "value": default,
-                    "arg": arg.doc,
-                    "required": arg.required,
-                }
+                if arg.default is not None:
+                    user_input[arg_name] = arg.default
             else:
                 validated = arg.validate(value)
-                validated_input[arg_name] = {
-                    "value": validated,
+                user_input[arg_name] = validated
+
+        pkg_data: Mapping[str, Any] = await self.guess_pkg_data(**user_input)
+
+        vars = pkg_data.get("vars", {})
+        user_input.update(vars)
+        info = pkg_data.get("info", {})
+        tags = pkg_data.get("tags", [])
+        labels = pkg_data.get("labels", {})
+
+        missing: Dict[str, Any] = {}
+        for arg_name, arg in args.childs.items():
+
+            value = user_input.get(arg_name, None)
+            if value is None:
+                arg_type = find_scalar_type(arg)
+                value_str = f"<{arg_type}_value>"
+                missing[arg_name] = {
+                    "value": value_str,
                     "arg": arg.doc,
                     "required": arg.required,
+                    "provided": False,
                 }
 
         repl_dict = {
-            "info": {},
-            "args": validated_input,
+            "info": info,
+            "tags": tags,
+            "labels": labels,
+            "input_values": user_input,
+            "args": missing,
             "pkg_type": pkg_type,
         }
 
@@ -724,6 +743,10 @@ class PkgType(metaclass=ABCMeta):
         )
 
         return result
+
+    async def guess_pkg_data(self, **user_input: Any) -> Mapping[str, Any]:
+
+        return {}
 
     async def create_pkg_desc(
         self, pkg_type: str, **kwargs: Any
