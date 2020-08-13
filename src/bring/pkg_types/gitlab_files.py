@@ -22,7 +22,7 @@ class GitFiles(PkgType):
     File-paths specified in the ``files`` argument can contain template place-holders (like: ``deploy/${provider}/config.json``). If that is the case, you need to provide a list of possible values for each of the included placeholders in the ``template_values`` key (check the example below).
 
     examples:
-      - kubernetes.ingress-nginx
+      - gitlab.bring-indexes.example-index.example_file1
     """
 
     _plugin_name: str = "gitlab_files"
