@@ -280,7 +280,7 @@ def create_pkg_version(
     urls = []
     for f in files:
         dl = {
-            "url": f"https://raw.githubusercontent.com/{user_name}/{repo_name}/{version}/{f}",
+            "url": f"https://gitlab.com/{user_name}/{repo_name}/-/raw/{version}/{f}",
             "target": f,
         }
         urls.append(dl)
