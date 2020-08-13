@@ -151,8 +151,6 @@ class BringFrecklet(Frecklet):
         if pkg_index:
 
             index_defaults = await pkg_index.get_index_defaults()
-            # index_defaults = await pkg.bring_index.get_index_defaults()
-            index_defaults = {}
             for k, v in index_defaults.items():
                 fv = FreckletVar(v, origin="index defaults")
                 index_defaults[k] = fv
