@@ -56,3 +56,4 @@ site
 .mypy_cache
 .env
 docs/api-documentation.md
+example-file1.pkg.br

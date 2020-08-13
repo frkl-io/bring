@@ -1,6 +1,7 @@
 This guide walks you through the creation of your first *bring* package. For details about the package description format, available package types and other more in-depth in formation check out the [package description documentation](/documentation/packages/package-description).
 
-## Create a package
+## Create the package description file
+
 
 For this example, we'll create a package for one of the files in [this example git repository](https://gitlab.com/bring-indexes/example-source-repo), specifically [this file](https://gitlab.com/bring-indexes/example-source-repo/-/blob/master/some-files/file1.md).
 
@@ -12,11 +13,11 @@ Since the file we are interested in is hosted on Gitlab, and we only are interes
 
 Without any arguments (apart from the required package type name), ``bring create pkg-desc [package-type]`` will return a bare package description string, which you can use as a starting point by copying it into a file and filling in some required values:
 
-{{ cli_html("bring", "create", "pkg-desc", "gitlab-files", max_height=340) }}
+{{ cli_html("bring", "create", "pkg-desc", "gitlab_files", max_height=340) }}
 
 We can also tell *bring* to create the package description file straight away:
 
-{{ cli_html("bring", "create", "pkg-desc", "gitlab-files", "-f", "example-file1", max_height=340) }}
+{{ cli_html("bring", "create", "pkg-desc", "gitlab_files", "-f", "example-file1", max_height=340) }}
 
 *Note*: if no file extension is provided, *bring* will use the default '``.pkg.br``'
 
@@ -42,7 +43,7 @@ For the ``gitlab_files`` plugin we can find out which values are required by iss
 
 {{ cli("bring", "create", "pkg-desc", "gitlab_files", "--help") }}
 
-Let's try that, then:
+Let's try that:
 
 {{ cli_html("bring", "create", "pkg-desc", "gitlab_files", "--user-name", "bring-indexes", "--repo-name", "example-source-repo", "--files", "some-file/file1.md") }}
 
