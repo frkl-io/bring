@@ -31,6 +31,11 @@ bring_config = BringConfig(freckles=freckles)
 bring = bring_config.get_bring()
 
 
+project_root = os.path.dirname(
+    os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+)
+
+
 def define_env(env):
     """
     This is the hook for defining variables, macros and filters
@@ -44,6 +49,7 @@ def define_env(env):
     print("retrieving pkg type explanations...")
     env.variables["pkg_types"] = get_all_pkg_type_explanations(bring)
     env.variables["bring"] = bring
+    env.variables["project_root"] = project_root
 
     async def get_package_details(pkg_name):
         pkg = await bring.get_pkg("binaries.pandoc")

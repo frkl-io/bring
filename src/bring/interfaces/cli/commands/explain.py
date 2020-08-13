@@ -194,6 +194,7 @@ class BringInfoPkgsGroup(FrklBaseCommand):
                     package = os.path.abspath(package)
                     ai = AutoInput(package)
                     desc = await ai.get_content_async()
+                    print(desc)
                     source = desc.pop("source")
 
                     pkg_type = source["type"]

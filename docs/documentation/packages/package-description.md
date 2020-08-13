@@ -95,7 +95,7 @@ a folder (for example by extracting it, or move a single downloaded file into a 
 - ``folder`` - a folder (for example when the artefact is a git repository)
 - ``archive`` - an archive file (currently supported archive types: zip, tar, tar.gz, tar.bz2, xtar)
 
-If ``artefact`` is not specified, the default mechanism of a specific package type is used (which should work for most cases).
+If ``artefact`` is not specified, a semi-smart detection mechanism is used (which should work for most cases).
 
 #### ``transform``
 

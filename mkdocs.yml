@@ -56,6 +56,7 @@ nav:
   - Overview: getting-started/overview.md
   - Getting information: getting-started/information.md
   - Installing packages: getting-started/installing-packages.md
+  - Creating a package: getting-started/creating-packages.md
 - Documentation:
     - Overview: documentation/overview.md
     - Installation: documentation/install.md

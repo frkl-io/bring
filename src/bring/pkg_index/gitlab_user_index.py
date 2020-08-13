@@ -5,7 +5,7 @@ from bring.pkg_index.gitservice_user_index import (
     BringGitServiceRepo,
     BringGitServiceUserIndex,
 )
-from bring.utils.gitlab import get_data_from_gitlab
+from bring.utils.gitlab import get_list_data_from_gitlab
 
 
 class BringGitlabUserIndex(BringGitServiceUserIndex):
@@ -16,10 +16,10 @@ class BringGitlabUserIndex(BringGitServiceUserIndex):
 
         try:
             request_path = f"/users/{self.service_username}/projects"
-            repo_data = await get_data_from_gitlab(path=request_path)
+            repo_data = await get_list_data_from_gitlab(path=request_path)
         except Exception:
             request_path = f"/groups/{self.service_username}/projects"
-            repo_data = await get_data_from_gitlab(path=request_path)
+            repo_data = await get_list_data_from_gitlab(path=request_path)
 
         user_repos = {}
         for data in repo_data:
