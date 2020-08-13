@@ -14,6 +14,10 @@ To get an idea how a full, 'working' package description looks like, here's one 
 {{ pandoc_details["full"] | to_yaml }}
 ```
 
+You can use the ``explain`` subcommand to debug a package, and print out the data it collects:
+
+{{ cli_html("bring", "explain", "pkg", "binaries.pandoc", max_height=240, fake_command="bring explain pkg [path_to_pandoc_desc_file].pkg.br") }}
+
 ## section: '``source``'
 
 A packacke description *must* have a section with the key ``source``. Ideally, it describes a package in a way that is idempotent, which means that, if given the same input values, it'll always yield the exact same files, in the exact same folder structure. In some cases that is not possible/required, but we'll ignore that for now and assume idempotency.

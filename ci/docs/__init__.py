@@ -184,6 +184,7 @@ def define_env(env):
         max_height: Optional[int] = None,
         start_lines: Optional[int] = None,
         end_lines: Optional[int] = None,
+        fake_command: Optional[str] = None,
     ):
 
         html_output = read_cache("cli_html", *command)
@@ -232,7 +233,10 @@ def define_env(env):
 
         html_output = html_output.strip()  # type: ignore
         if print_command:
-            html_output = f"""> {' '.join(command)}\n\n{html_output}"""
+            if fake_command:
+                html_output = f"""> {fake_command}\n\n{html_output}"""
+            else:
+                html_output = f"""> {' '.join(command)}\n\n{html_output}"""
 
         end = "\n</div>"
 
