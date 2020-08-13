@@ -65,8 +65,7 @@ nav:
         Overview: documentation/packages/overview.md
         Package description: documentation/packages/package-description.md
         Package types: documentation/packages/package-types.md
-    - Indexes:
-        Overview: documentation/indexes/overview.md
+    - Indexes: documentation/indexes.md
 #    - Plugins:
 #        Mogrifiers: documentation/plugins/mogrifiers.md
 #- API Documentation: api-documentation.md
