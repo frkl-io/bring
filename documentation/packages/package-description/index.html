@@ -27,7 +27,84 @@
   <span class="p p-Indicator">-</span> <span class=nt>bin/pandoc</span><span class=p>:</span>
       <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">755</span>
       <span class=nt>path</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">pandoc</span>
-</code></pre></div> <h2 id=section-source>section: '<code>source</code>'<a class=headerlink href=#section-source title="Permanent link">&para;</a></h2> <p>A packacke description <em>must</em> have a section with the key <code>source</code>. Ideally, it describes a package in a way that is idempotent, which means that, if given the same input values, it'll always yield the exact same files, in the exact same folder structure. In some cases that is not possible/required, but we'll ignore that for now and assume idempotency.</p> <p>The <em>source</em> section itself can be split up into 3 different sub-sections:</p> <h3 id=key-type>key: '<code>type</code>'<a class=headerlink href=#key-type title="Permanent link">&para;</a></h3> <p>The name of the <a href=/documentation/packages/package-types>package type</a> plugin that will read and process this data. <em>bring</em> supports multiple such package types, to accomodate for the different ways people publish their files. Currently available, official package types are:</p> <ul> <li> <p><a href=/documentation/packages/package-types#type-git_files><code>git_files</code></a>: a package type to retrieve one or several files from a git repository</p> </li> <li> <p><a href=/documentation/packages/package-types#type-git_repo><code>git_repo</code></a>: a package that represents a git repository and its content</p> </li> <li> <p><a href=/documentation/packages/package-types#type-github_files><code>github_files</code></a>: a package type to retrieve one or several files from a git repository that is hosted on <a href=https://github.com>GitHub</a></p> </li> <li> <p><a href=/documentation/packages/package-types#type-github_release><code>github_release</code></a>: a package type that tracks GitHub release artefacts</p> </li> <li> <p><a href=/documentation/packages/package-types#type-template_url><code>template_url</code></a>: a package type to resolve packages whose artifacts are published with static urls that can be templated</p> </li> </ul> <h3 id=type-specific-keys><em>type-specific keys</em><a class=headerlink href=#type-specific-keys title="Permanent link">&para;</a></h3> <p>Each package type has different required and optional arguments. Check their respective documentation for details.</p> <h3 id=common-keys-optional><em>common keys (optional)</em><a class=headerlink href=#common-keys-optional title="Permanent link">&para;</a></h3> <p><em>bring</em> uses <em>package-type plugins</em> to retrieve source files for packages, but then uses the same code to post-process those files. This code also can take some input in order to costumize the final structure of a package.</p> <p>Those keys are currently supported:</p> <h4 id=aliases><code>aliases</code><a class=headerlink href=#aliases title="Permanent link">&para;</a></h4> <p>A dictionary with the variable names as keys, and an alias dictionary (with alias as key, and final value as, well, ...value).</p> <p>E.g., for:</p> <div class=highlight><pre><span></span><code><span class=nt>os</span><span class=p>:</span>
+</code></pre></div> <p>You can use the <code>explain</code> subcommand to debug a package, and print out the data it collects:</p> <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style=max-height:240px;overflow:auto class=terminal-output>
+> bring explain pkg [path_to_pandoc_desc_file].pkg.br
+
+<span style="color: #808080; font-weight: bold">Package </span><span style="color: #808080; font-weight: bold; text-decoration: underline">binaries.pandoc</span> (Universal markup converter)
+
+ <span style="font-style: italic">          </span>
+ <span style="font-style: italic">desc      </span> Pandoc is a Haskell library for converting from one markup format to another, and a
+            command-line tool that uses this library.
+ <span style="font-style: italic">          </span>
+ <span style="font-style: italic">homepage  </span> https://pandoc.org/
+
+
+ <span style="color: #808080; font-weight: bold">Variables</span>
+
+ <span style="color: #ff8700">arch   </span>   <span style="font-style: italic">The architecture the binary is built for.</span>
+ <span style="color: #ff8700">       </span>
+           default   <span style="font-style: italic"> -- no default --      </span>
+           required  <span style="font-style: italic"> yes                   </span>
+           type      <span style="font-style: italic"> string                </span>
+           allowed   <span style="font-style: italic"> amd64 (alias: x86_64) </span>
+                     <span style="font-style: italic"> i386                  </span>
+
+ <span style="color: #ff8700">os     </span>   <span style="font-style: italic">The operating system to run on.</span>
+ <span style="color: #ff8700">       </span>
+           default   <span style="font-style: italic"> -- no default --      </span>
+           required  <span style="font-style: italic"> yes                   </span>
+           type      <span style="font-style: italic"> string                </span>
+           allowed   <span style="font-style: italic"> 3                     </span>
+                     <span style="font-style: italic"> macOS (alias: darwin) </span>
+                     <span style="font-style: italic"> linux                 </span>
+                     <span style="font-style: italic"> osx                   </span>
+                     <span style="font-style: italic"> windows               </span>
+
+ <span style="color: #ff8700">version</span>   <span style="font-style: italic">The version of the package.</span>
+ <span style="color: #ff8700">       </span>
+           default   <span style="font-style: italic"> </span><span style="color: #008000; font-style: italic">latest</span><span style="font-style: italic">                           </span>
+           required  <span style="font-style: italic"> yes                              </span>
+           type      <span style="font-style: italic"> string                           </span>
+           allowed   <span style="font-style: italic"> 2.10.1 (aliases: stable, latest) </span>
+                     <span style="font-style: italic"> 2.10                             </span>
+                     <span style="font-style: italic"> 2.9.2.1                          </span>
+                     <span style="font-style: italic"> 2.9.2                            </span>
+                     <span style="font-style: italic"> 2.9.1.1                          </span>
+                     <span style="font-style: italic"> 2.9.1                            </span>
+                     <span style="font-style: italic"> 2.9                              </span>
+                     <span style="font-style: italic"> 2.8.1                            </span>
+                     <span style="font-style: italic"> 2.8.0.1                          </span>
+                     <span style="font-style: italic"> 2.8                              </span>
+                     <span style="font-style: italic"> 2.7.3                            </span>
+                     <span style="font-style: italic"> 2.7.2                            </span>
+                     <span style="font-style: italic"> 2.7.1                            </span>
+                     <span style="font-style: italic"> 2.7                              </span>
+                     <span style="font-style: italic"> 2.6                              </span>
+                     <span style="font-style: italic"> 2.5                              </span>
+                     <span style="font-style: italic"> 2.4                              </span>
+                     <span style="font-style: italic"> 2.3.1                            </span>
+                     <span style="font-style: italic"> 2.3                              </span>
+                     <span style="font-style: italic"> 2.2.3.2                          </span>
+                     <span style="font-style: italic"> 2.2.3.1                          </span>
+                     <span style="font-style: italic"> 2.2.2.1                          </span>
+                     <span style="font-style: italic"> 2.2.2                            </span>
+                     <span style="font-style: italic"> 2.2.1                            </span>
+                     <span style="font-style: italic"> 2.2                              </span>
+                     <span style="font-style: italic"> 2.1.3                            </span>
+                     <span style="font-style: italic"> 2.1.2                            </span>
+                     <span style="font-style: italic"> 2.1.1                            </span>
+                     <span style="font-style: italic"> 2.1                              </span>
+                     <span style="font-style: italic"> 2.0.6                            </span>
+                     <span style="font-style: italic"> 2.0.5                            </span>
+                     <span style="font-style: italic"> 2.0.4                            </span>
+                     <span style="font-style: italic"> 2.0.3                            </span>
+                     <span style="font-style: italic"> 2.0.2                            </span>
+                     <span style="font-style: italic"> 2.0.1.1                          </span>
+                     <span style="font-style: italic"> 2.0.1                            </span>
+                     <span style="font-style: italic"> 2.0.0.1                          </span>
+                     <span style="font-style: italic"> 2.0                              </span>
+                     <span style="font-style: italic"> 1.12.4.2                         </span>
+</div></pre> <h2 id=section-source>section: '<code>source</code>'<a class=headerlink href=#section-source title="Permanent link">&para;</a></h2> <p>A packacke description <em>must</em> have a section with the key <code>source</code>. Ideally, it describes a package in a way that is idempotent, which means that, if given the same input values, it'll always yield the exact same files, in the exact same folder structure. In some cases that is not possible/required, but we'll ignore that for now and assume idempotency.</p> <p>The <em>source</em> section itself can be split up into 3 different sub-sections:</p> <h3 id=key-type>key: '<code>type</code>'<a class=headerlink href=#key-type title="Permanent link">&para;</a></h3> <p>The name of the <a href=/documentation/packages/package-types>package type</a> plugin that will read and process this data. <em>bring</em> supports multiple such package types, to accomodate for the different ways people publish their files. Currently available, official package types are:</p> <ul> <li> <p><a href=/documentation/packages/package-types#type-git_files><code>git_files</code></a>: a package type to retrieve one or several files from a git repository</p> </li> <li> <p><a href=/documentation/packages/package-types#type-git_repo><code>git_repo</code></a>: a package that represents a git repository and its content</p> </li> <li> <p><a href=/documentation/packages/package-types#type-github_files><code>github_files</code></a>: a package type to retrieve one or several files from a git repository that is hosted on <a href=https://github.com>GitHub</a></p> </li> <li> <p><a href=/documentation/packages/package-types#type-github_release><code>github_release</code></a>: a package type that tracks GitHub release artefacts</p> </li> <li> <p><a href=/documentation/packages/package-types#type-template_url><code>template_url</code></a>: a package type to resolve packages whose artifacts are published with static urls that can be templated</p> </li> </ul> <h3 id=type-specific-keys><em>type-specific keys</em><a class=headerlink href=#type-specific-keys title="Permanent link">&para;</a></h3> <p>Each package type has different required and optional arguments. Check their respective documentation for details.</p> <h3 id=common-keys-optional><em>common keys (optional)</em><a class=headerlink href=#common-keys-optional title="Permanent link">&para;</a></h3> <p><em>bring</em> uses <em>package-type plugins</em> to retrieve source files for packages, but then uses the same code to post-process those files. This code also can take some input in order to costumize the final structure of a package.</p> <p>Those keys are currently supported:</p> <h4 id=aliases><code>aliases</code><a class=headerlink href=#aliases title="Permanent link">&para;</a></h4> <p>A dictionary with the variable names as keys, and an alias dictionary (with alias as key, and final value as, well, ...value).</p> <p>E.g., for:</p> <div class=highlight><pre><span></span><code><span class=nt>os</span><span class=p>:</span>
   <span class=nt>linux</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">unknown-linux-gnu</span>
   <span class=nt>darwin</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apple-darwin</span>
 </code></pre></div> <p>...an input value of <code>linux</code> for the <code>os</code> variable would resolve to <code>unknown-linux-gnu</code>. Package types sometimes provider their own aliases (for example 'latest' as a pointer to the latest version of a github release).</p> <h4 id=args><code>args</code><a class=headerlink href=#args title="Permanent link">&para;</a></h4> <p>A dictionary to let you control how package arguments are presented to the user. <em>bring</em> comes with default argument configurations for 3 argument keys: <code>version</code>, <code>arch</code>, <code>os</code>. If your package has other input variables (or if you want to override the defaults), you can do that here.</p> <p>Here is a list of available configuration keys (all of them optional):</p> <ul> <li><strong><code>doc</code></strong>: a string describing the argument</li> <li><strong><code>type</code></strong>: the type of the argument. supported: "any", "string", "integer", "list", "dict", "boolean" (and a few others, to be documented later -- defaults to "any")</li> <li><strong><code>default</code></strong>: a default value if none is provided for the (no default)</li> <li><strong><code>required</code></strong>: whether the argument is required or optional (defaults to 'true')</li> <li><strong><code>multiple</code></strong>: whether a only a single, or multiple values are allowed (defaults to 'false')</li> <li><strong><code>allowed</code></strong>: a list of allowed values (not implemented yet -- no default)</li> </ul> <p>As an example for the: the <a href=https://gitlab.com/bring-indexes/kubernetes/-/blob/master/ingress-nginx.pkg.br><code>kubernetes.ingress</code></a> requires an extra <code>provider</code> argument, to determine the exact yaml manifest file to select. This variable is described with data like:</p> <div class=highlight><pre><span></span><code><span class=nt>args</span><span class=p>:</span>

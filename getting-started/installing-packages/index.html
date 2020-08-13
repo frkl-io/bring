@@ -27,7 +27,7 @@
 
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__m657vf8v</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__edk5n7th</span>':
 
   <span style="font-style: italic">fd</span>: merged
 </div></pre> <p><em>bring</em> always tries be as clear as possible as to what it is doing, which is why it prints the values it ends up using, as well as their origin.</p> <p>For example, as you can see from the output of that command, the <code>fd</code> binary file was installed into the local <code>$HOME/.local/bring</code> folder. This is because that is the default folder for the <code>binaries</code> <em>index</em> (check the <a href=/getting-started/information/#display-information>'explain' command documentation</a> on how to get that information). In addition to the <code>target</code> default, that index also comes with a set of auto-generated default values that describe the OS and architecture of the system <em>bring</em> is running on (which is helpful to pick the right version of a binary, for example).</p> <p>In some cases the default target might not be suitable for you though. In that case, you can install the package...</p> <h3 id=into-a-specific-folder>... into a specific folder<a class=headerlink href=#into-a-specific-folder title="Permanent link">&para;</a></h3> <p>If you need to install a package into a specific directory, use the <code>--target</code> parameter:</p> <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style=overflow:auto class=terminal-output>
@@ -64,7 +64,7 @@
       ...<br>
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__0t7jez7b</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__4y1m0bd5</span>':
 
   <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre> <p>To have more fine-grained control of the version of the package to install, you have to use the <em>install</em> command...</p> <h3 id=with-arguments>... with arguments<a class=headerlink href=#with-arguments title="Permanent link">&para;</a></h3> <p>Packages often come in different flavours (e.g. which architecture, OS, etc.), as well as several versions, which can be specified in the <code>install</code> command after the package name. Depending on the <em>index</em> configuration, <code>bring</code> assumes certain default values which often make it so that no package arguments at all need to be provided.</p> <p>But, often it is advisable to specify the exact version of a package to install. If that is desired, you can use the <code>--help</code> parameter (after the package name) to get <code>bring</code> to display information about the supported arguments:</p> <div class=highlight><pre><span></span><code><span class=gp>&gt;</span> bring install binaries.fd --help
@@ -95,7 +95,7 @@
       ...<br>
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__vry9_ohk</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__snmbdg7e</span>':
 
   <span style="font-style: italic">fd</span>: merged
 </div></pre> <h2 id=install-details>Install details<a class=headerlink href=#install-details title="Permanent link">&para;</a></h2> <p>In case you are wondering what the install command actually does, you can use the <code>--explain</code> flag to get some information about the variables used, and the steps that are executed during the install process (without actually doing anything):</p> <pre style="font-family:'Roboto Mono',Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace;"><div style=overflow:auto class=terminal-output>
