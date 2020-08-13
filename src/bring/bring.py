@@ -522,7 +522,7 @@ def register_bring_frecklet_types(bring: Bring, freckles: Freckles) -> None:
 
     if "install_pkg" not in current.keys():
 
-        from bring.frecklets.install_pkg import BringInstallFrecklet
+        from bring.frecklets.install_pkg.frecklet import BringInstallFrecklet
 
         prototing_name_install_pkg = f"{bring.full_name}.frecklets.install_pkg"
         if prototing_name_install_pkg not in freckles.tingistry.ting_names:
@@ -534,7 +534,9 @@ def register_bring_frecklet_types(bring: Bring, freckles: Freckles) -> None:
         to_add["install_pkg"] = prototing_name_install_pkg
 
     if "install_assembly" not in current.keys():
-        from bring.frecklets.install_assembly import BringInstallAssemblyFrecklet
+        from bring.frecklets.install_assembly.frecklet import (
+            BringInstallAssemblyFrecklet,
+        )
 
         prototing_name_install_assembly = (
             f"{bring.full_name}.frecklets.install_assembly"

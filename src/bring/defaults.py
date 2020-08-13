@@ -50,6 +50,8 @@ BRINGISTRY_PRELOAD_MODULES = [
     "bring.plugins.templating.*",
     "bring.pkg_index.*",
     "bring.config",
+    "bring.frecklets.install_pkg.*",
+    "bring.frecklets.install_assembly.*",
     "frkl.tasks.task_watchers.*",
     "freckles.core.*",
     "bring.frecklets.*",
