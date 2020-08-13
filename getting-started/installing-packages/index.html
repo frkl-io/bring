@@ -64,7 +64,7 @@
       ...<br>
 <span style="color: #808080; font-weight: bold">Result:</span>
 
-- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__sx3jrtcw</span>':
+- merged items into '<span style="font-style: italic">/home/runner/.cache/bring/workspace/results/install__l3bsqg7y</span>':
 
   <span style="font-style: italic">cert-manager.yaml</span>: merged
 </div></pre> <p>To have more fine-grained control of the version of the package to install, you have to use the <em>install</em> command...</p> <h3 id=with-arguments>... with arguments<a class=headerlink href=#with-arguments title="Permanent link">&para;</a></h3> <p>Packages often come in different flavours (e.g. which architecture, OS, etc.), as well as several versions, which can be specified in the <code>install</code> command after the package name. Depending on the <em>index</em> configuration, <code>bring</code> assumes certain default values which often make it so that no package arguments at all need to be provided.</p> <p>But, often it is advisable to specify the exact version of a package to install. If that is desired, you can use the <code>--help</code> parameter (after the package name) to get <code>bring</code> to display information about the supported arguments:</p> <div class=highlight><pre><span></span><code><span class=gp>&gt;</span> bring install binaries.fd --help
