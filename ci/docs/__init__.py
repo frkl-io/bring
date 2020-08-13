@@ -14,6 +14,7 @@ from frkl.args.arg import ScalarArg
 from frkl.common.async_utils import wrap_async_task
 from frkl.common.downloads.cache import calculate_cache_location_for_url
 from frkl.common.formats.serialize import serialize
+from frkl.common.strings import reindent
 from frkl.explain.explanations.exception import ExceptionExplanation
 from pydoc_markdown.main import RenderSession
 
@@ -102,6 +103,7 @@ def define_env(env):
         max_height: Optional[int] = None,
         start_lines: Optional[int] = None,
         end_lines: Optional[int] = None,
+        indent: Optional[int] = None,
     ):
 
         stdout = read_cache("cli", *command)
@@ -137,6 +139,9 @@ def define_env(env):
 
         if code_block:
             stdout = f"``` console\n{stdout}\n```\n"
+
+        if indent:
+            stdout = reindent(stdout, indent)
 
         if max_height is not None and max_height > 0:
             stdout = f"<div style='max-height:{max_height}px;overflow:auto'>\n{stdout}\n</div>"

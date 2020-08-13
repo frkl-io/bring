@@ -14,23 +14,16 @@ To get an idea how a full, 'working' package description looks like, here's one 
 {{ pandoc_details["full"] | to_yaml }}
 ```
 
-## section: '*source*'
+## section: '``source``'
 
 A packacke description *must* have a section with the key ``source``. Ideally, it describes a package in a way that is idempotent, which means that, if given the same input values, it'll always yield the exact same files, in the exact same folder structure. In some cases that is not possible/required, but we'll ignore that for now and assume idempotency.
 
 The *source* section itself can be split up into 3 different sub-sections:
 
-**type** (required)
-:    the name of the [package type](/documentation/packages/package-types) plugin that will read and process this data. *bring* supports multiple such package types, to accomodate for the different ways people publish their files.
 
-**type-specific keys** (almost always required)
-:    echo package type has different required and optional arguments. Check their respective documentation for details.
+### key: '``type``'
 
-**common keys** (optional)
-:    *bring* uses *package-type plugins* to retrieve source files for packages, but then uses the same code to post-process those files. This code also can take some input in order to costumize the final structure of a package.
-
-### key: *type*
-
+The name of the [package type](/documentation/packages/package-types) plugin that will read and process this data. *bring* supports multiple such package types, to accomodate for the different ways people publish their files.
 Currently available, official package types are:
 
 {% for pkg_type, expl in pkg_types.items() %}
@@ -39,43 +32,104 @@ Currently available, official package types are:
 
 ### *type-specific keys*
 
-Those differ for each package type. Check the documentation of the type you intend to use for details.
+Each package type has different required and optional arguments. Check their respective documentation for details.
 
-### *common keys*
+### *common keys (optional)*
+
+*bring* uses *package-type plugins* to retrieve source files for packages, but then uses the same code to post-process those files. This code also can take some input in order to costumize the final structure of a package.
 
 Those keys are currently supported:
 
-``aliases`` (optional)
-:    A dictionary with the variable names as keys, and an alias dictionary (with alias as key, and final value as, well, ...value).
+#### ``aliases``
 
-    E.g., for:
+A dictionary with the variable names as keys, and an alias dictionary (with alias as key, and final value as, well, ...value).
 
-    ``` yaml
-    os:
-      linux: unknown-linux-gnu
-      darwin: apple-darwin
-    ```
+E.g., for:
 
-    ...an input value of ``linux`` for the ``os`` variable would resolve to ``unknown-linux-gnu``. Package types sometimes provider their own aliases (for example 'latest' as a pointer to the latest version of a github release).
+``` yaml
+os:
+  linux: unknown-linux-gnu
+  darwin: apple-darwin
+```
 
-``args`` (optional)
-:  
+...an input value of ``linux`` for the ``os`` variable would resolve to ``unknown-linux-gnu``. Package types sometimes provider their own aliases (for example 'latest' as a pointer to the latest version of a github release).
 
-``artefact`` (optional)
-:    An optional argument that specifies the type of source package artefact for a package (which could be a tar.gz- or zip-archive, a folder, a single-file, etc.). Internally, ``bring`` requires each package to be a folder containing one or several files. This argument helps transform single-file artefacts (archive, normal file) into
+#### ``args``
+
+A dictionary to let you control how package arguments are presented to the user. *bring* comes with default argument configurations for 3 argument keys: ``version``, ``arch``, ``os``. If your package has other input variables (or if you want to override the defaults), you can do that here.
+
+Here is a list of available configuration keys (all of them optional):
+
+- **``doc``**: a string describing the argument
+- **``type``**: the type of the argument. supported: "any", "string", "integer", "list", "dict", "boolean" (and a few others, to be documented later -- defaults to "any")
+- **``default``**: a default value if none is provided for the (no default)
+- **``required``**: whether the argument is required or optional (defaults to 'true')
+- **``multiple``**: whether a only a single, or multiple values are allowed (defaults to 'false')
+- **``allowed``**: a list of allowed values (not implemented yet -- no default)
+
+As an example for the: the [``kubernetes.ingress``](https://gitlab.com/bring-indexes/kubernetes/-/blob/master/ingress-nginx.pkg.br) requires an extra ``provider`` argument, to determine the exact yaml manifest file to select. This variable is described with data like:
+
+```yaml
+args:
+  provider:
+    doc: The provider to deploy to.
+    default: cloud
+```
+
+This will change the output of the package install help command to be:
+
+{{ cli("bring", "install", "kubernetes.ingress-nginx", "--help") }}
+
+And it will use ``cloud`` as value for that key if not specified otherwise by the user.
+
+
+####``artefact``
+ An optional hint to specify the type of source package artefact for a package (which could be a tar.gz- or zip-archive, a folder, a single-file, etc.). Internally, ``bring`` requires each package to be a folder containing one or several files. This argument helps transform single-file artefacts (archive, normal file) into
 a folder (for example by extracting it, or move a single downloaded file into a newly created temporary folder). In most cases, you won't need to specify it. For the cases where that is not true, those values are currently supported:
 
-    - ``file`` - a plain, single file
-    - ``folder`` - a folder (for example when the artefact is a git repository)
-    - ``archive`` - an archive file (currently supported archive types: zip, tar, tar.gz, tar.bz2, xtar)
+- ``file`` - a plain, single file
+- ``folder`` - a folder (for example when the artefact is a git repository)
+- ``archive`` - an archive file (currently supported archive types: zip, tar, tar.gz, tar.bz2, xtar)
 
-    If ``artefact`` is not specified, the default mechanism of a specific package type is used (which should work for most cases).
+If ``artefact`` is not specified, the default mechanism of a specific package type is used (which should work for most cases).
 
+#### ``transform``
 
-## section: *metadata*
+Optional configuration to control which files that are contained in the original artefact will end up in the package. This is the most used configuration option, as often you are not interested in supplementary files (licenses, configuration examples, etc.) to be installed into the target.
 
-### key: *info*
+Configuration for this value is done via providing a list of items as input. Each item can either be a string (for simple filtering), or a dictionary of values (if more advanced configuration is necessary).
 
-### key: *tags*
+If no value for ``transform`` is provided, all files of the package will be copied into the target. If one or several list items are set, only those will be used, and all non-matching files will be ignored.
 
-### key: *labels*
+If a list item is a string, the full path to that file is looked up in the source package folder, and copied over to the target using the exact same path/filename. If a dictionary is provided, those are the available configuration keys:
+
+- **``from``** (required string): the path to the file/the filename in the source
+- **``to``** (optional string): the target path/filename (defaults to the value of ``from``)
+- **``mode``** (optional, string or integeer): the permissions of the file on the target (e.g. '0755', 644, ...)
+
+All variables that are used to resolve a version of a package are allowed in variable placeholders (``${var_name}``).
+
+An full example from the [binaries.k3d](https://gitlab.com/bring-indexes/binaries/-/blob/master/virtualization/orchestration/kubernetes/k3d.pkg.br) package, which renames an os-specificly named file to a more generic name, and also makes the file executable:
+
+```yaml
+transform:
+  - path: k3d
+    from: "k3d-${ os }-amd64"
+    mode: 755
+```  
+
+Other configuration keys are not supported currently, neither is selecting files via globs/regexs. There are plans to do that in the future though. Mixing string and dictionary items is allowed.  
+
+## metadata sections:
+
+### section: '``info``'
+
+Contains information about the package itself, the most important sub-keys are: ``slug`` (description of the package), ``homepage``.
+
+### section: "``tags``"
+
+A list of strings containing tags that apply to the package. This is not used at the moment, but will be later to filter/select packages.
+
+### section: "``labels``"
+
+A list of strings containing labels that apply to the package. This is not used at the moment, but will be later to filter/select packages.
