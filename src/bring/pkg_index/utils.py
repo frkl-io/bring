@@ -77,7 +77,7 @@ class IndexDiff(object):
 
         pkgs: Set[PkgTing] = set()
         if pkgs_removed:
-            pkgs.update(pkgs_removed.keys())
+            pkgs.update(pkgs_removed)
         if versions_removed:
             pkgs.update(versions_removed.keys())
 
