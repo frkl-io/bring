@@ -16,6 +16,7 @@ Currently *bring* is in a late alpha state, I'd say. It's usable, and works most
 - documentation in general, but especially in-code
 - test coverage of *bring* and it's dependencies
 - pockets of complexity that turned out to be unnecessary, and should be removed or simplified
+- startup time is not optimized yet at all. There should be some easy wins there, but not 100% sure.
 
 ### Design and technologies used
 
