@@ -283,7 +283,6 @@ class PkgTing(SimpleTing):
         _vars_replaced = replace_var_aliases(vars=filtered, metadata=metadata)
 
         _vars = args.validate(_vars_replaced, raise_exception=True)
-
         version: Optional[PkgVersion] = find_version(vars=_vars, metadata=metadata)
 
         if not version:

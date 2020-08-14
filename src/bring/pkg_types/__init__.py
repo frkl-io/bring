@@ -14,6 +14,7 @@ from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional,
 import arrow
 from anyio import aopen
 from bring.defaults import (
+    BRING_AUTO_ARG,
     BRING_PKG_CACHE,
     BRING_RESOURCES_FOLDER,
     BRING_TEMP_CACHE,
@@ -34,7 +35,7 @@ from frkl.common.jinja_templating import (
     template_schema_to_args,
 )
 from frkl.common.jinja_templating.filters import ALL_FRTLS_FILTERS
-from frkl.common.regex import find_var_names_in_obj, replace_var_names_in_obj
+from frkl.common.regex import find_var_names_in_obj
 from frkl.common.strings import from_camel_case
 from jinja2 import Environment
 from ruamel.yaml import YAML
@@ -484,20 +485,21 @@ class PkgType(metaclass=ABCMeta):
                     raise NotImplementedError()
                     # version["_mogrify"]
 
-        for version in versions:
-            mog = version.steps
-            # print(version)
-            var_names = find_var_names_in_obj(mog)
-            if var_names:
-                vars = {}
-                for k, v in version.vars.items():
-                    if k.startswith("_"):
-                        continue
-                    vars[k] = v
-                new_mog = replace_var_names_in_obj(mog, vars)
-                # print(vars)
-                # print(new_mog)
-                version.steps = new_mog
+        # for version in versions:
+        #     mog = version.steps
+        #     # print(version)
+        #     var_names = find_var_names_in_obj(mog)
+        #     if var_names:
+        #         vars = {}
+        #         for k, v in version.vars.items():
+        #             if k.startswith("_"):
+        #                 continue
+        #             vars[k] = v
+        #
+        #         new_mog = replace_var_names_in_obj(mog, vars)
+        #         # print(vars)
+        #         # print(new_mog)
+        #         version.steps = new_mog
 
         source_args = _source_details.get("args", None)
         _exploded_source_args = {}
@@ -524,10 +526,12 @@ class PkgType(metaclass=ABCMeta):
 
                 _exploded_source_args[arg_name] = _arg_data
 
+        _transform = _source_details.get("transform", None)
         pkg_vars = await self.process_vars(
             source_args=_exploded_source_args,
             pkg_args=pkg_args,
             mogrifiers=mogrifiers,
+            transform=_transform,
             source_vars=_source_details.get("vars", None),
             versions=versions,  # type: ignore
             aliases=pkg_aliases,
@@ -563,7 +567,7 @@ class PkgType(metaclass=ABCMeta):
         self, source_details: Mapping[str, Any], version: PkgVersion
     ) -> Optional[Union[Mapping, Iterable]]:
 
-        content: Any = source_details.get("transform", None)
+        transform: Any = source_details.get("transform", None)
         pkg_vars = {}
         for k, v in version.vars.items():
             if k.startswith("_"):
@@ -573,7 +577,7 @@ class PkgType(metaclass=ABCMeta):
         pkg_content_mogrifier = {
             "type": "transform_folder",
             "pkg_vars": pkg_vars,
-            "pkg_spec": content,
+            "pkg_spec": transform,
         }
         return pkg_content_mogrifier
 
@@ -582,6 +586,7 @@ class PkgType(metaclass=ABCMeta):
         source_args: Mapping[str, Any],
         pkg_args: Mapping[str, Any],
         mogrifiers: Union[Iterable, Mapping],
+        transform: Optional[Any],
         source_vars: Mapping[str, Any],
         versions: List[PkgVersion],
         aliases: Mapping[str, Mapping[str, str]],
@@ -593,7 +598,8 @@ class PkgType(metaclass=ABCMeta):
         Args:
             - *source_args*: dictionary of args to describe the type/schema of an argument
             - *pkg_args*: a dictionary of automatically created args by a specific resolver. Those will be used as base, but will be overwritten by anything in 'source_args'
-            - *mogrifiers*: the 'mogrify' section of the pkg 'source'
+            - *mogrifiers*: the 'mogrify' section of the pkg source
+            - *transform*: the 'transform section of the pkg source
             - *source_vars*: vars that are hardcoded in the 'source' section of a package, can also contain templates
             - *versions*: all avaailable versions of a package
             - *aliases*: a dictionary of value aliases that can be used by the user instead of the 'real' ones. Aliases are per arg name.
@@ -638,8 +644,9 @@ class PkgType(metaclass=ABCMeta):
                         version_vars[var_name]["allowed"].append(alias)
 
         mogrify_vars: Mapping[str, Mapping]
-        duplicates = {}
         if mogrifiers:
+            raise NotImplementedError()
+            duplicates = {}
             template_schema = get_template_schema(mogrifiers)
             mogrify_vars = template_schema_to_args(template_schema)
 
@@ -649,14 +656,29 @@ class PkgType(metaclass=ABCMeta):
         else:
             mogrify_vars = {}
 
+        transform_var_names = find_var_names_in_obj(transform)
+        for var_name in transform_var_names:
+            mogrify_vars[var_name] = copy.copy(BRING_AUTO_ARG)
+
         computed_vars = get_seeded_dict(
             mogrify_vars, version_vars, merge_strategy="update"
         )
 
+        # if transform:
+        #     import pp
+        #     pp(source_args)
+        #     pp(source_vars)
+        #     pp(pkg_args)
+        #     transform_vars = find_var_names_in_obj(transform)
+        #     for var_name in transform_vars:
+        #         if var_name not in computed_vars.keys():
+        #             computed_vars[var_name] = copy.copy(BRING_AUTO_ARG)
+
         if source_vars is None:
             source_vars = {}
 
-        required_keys = computed_vars.keys()
+        required_keys = list(computed_vars.keys())
+
         # now try to find keys that are not included in the first/latest version (most of the time there won't be any)
         args = get_seeded_dict(
             pkg_args, computed_vars, source_args, merge_strategy="merge"

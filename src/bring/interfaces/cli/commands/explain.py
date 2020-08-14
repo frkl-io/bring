@@ -222,7 +222,7 @@ class BringInfoPkgsGroup(FrklBaseCommand):
 
                     full_name = await self._bring.get_full_package_name(package)
 
-                    vals = await pkg.get_values()
+                    vals = await pkg.get_values(raise_exception=True)
 
                     pkg_info: PkgExplanation = PkgExplanation(
                         pkg_name=full_name,

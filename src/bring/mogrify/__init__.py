@@ -11,7 +11,7 @@ from typing import Any, Iterable, Mapping, Optional, Union
 from bring.defaults import BRING_WORKSPACE_FOLDER
 from frkl.common.exceptions import FrklException
 from frkl.common.filesystem import ensure_folder
-from frkl.common.jinja_templating import replace_strings_in_obj
+from frkl.common.regex import replace_var_names_in_obj
 from frkl.common.strings import generate_valid_identifier
 from frkl.tasks.task import Task
 from frkl.tasks.task_desc import TaskDesc
@@ -45,8 +45,8 @@ def assemble_mogrifiers(
             if k in args.keys():
                 relevant_vars[k] = v
 
-        _data = replace_strings_in_obj(
-            source_obj=mogrifier_list, replacement_dict=relevant_vars
+        _data = replace_var_names_in_obj(
+            template_obj=mogrifier_list, repl_dict=relevant_vars
         )
 
     mog_data = []
