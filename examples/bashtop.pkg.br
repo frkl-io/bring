@@ -1,0 +1,23 @@
+info:
+
+  license: Apache License 2.0
+  author:
+    github_user: aristocratos
+  homepage: https://github.com/aristocratos/bashtop
+  slug: Linux resource monitor
+
+tags:
+  - system info
+
+labels:
+  language: bash
+  executable_type: script
+
+pkg:
+  type: git_repo
+  url: https://github.com/aristocratos/bashtop.git
+
+content:
+  - bashtop
+
+

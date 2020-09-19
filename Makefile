@@ -118,10 +118,6 @@ flake: ## check style with flake8
 mypy: ## run mypy
 	mypy src/bring
 
-safety: ## run safety
-	safety check
-
-
 check: black flake mypy test ## run dev-related checks
 
 black: ## run black
@@ -144,8 +140,5 @@ dist: clean ## builds source and wheel package
 	python setup.py bdist_wheel
 	ls -l dist
 
-index:
-	bring export-index .
-
-attribution: ## create/update attribution file
+attribution: ## create a json file with attribution information
 	scripts/attribution/create_attribution_data.sh . ./src/bring/resources/attribution.json

@@ -68,26 +68,23 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.pyenv/
-          key: ${{ runner.os }}-target-darwin-10.11-bring-python-build-v7
+          key: ${{ runner.os }}-target-darwin-10.11-bring-python-build
       - run: brew install pyenv
       - run: brew install pyenv-virtualenv
       - uses: actions/checkout@v2
       - name: build_binary
-        run: ./scripts/build-binary/build.sh --spec-file scripts/build-binary/onefile.spec --python-version "3.8.5" --pyinstaller-version "4.0"
-      - name: Add MacOS certs
-        run: chmod +x ./scripts/build-binary/add-osx-cert.sh && ./scripts/build-binary/add-osx-cert.sh
-        env:
-          CERTIFICATE_OSX_APPLICATION: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
-          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
-      - name: sign binary
-        run: "codesign -f -s 'Developer ID Application: Markus Binsteiner (4Q559SZWTL)' dist/darwin19/bring"
+        run: ./scripts/build-binary/build.sh --spec-file scripts/build-binary/onefile.spec --python-version "3.7.7"
+#      # uncomment to sign binary (needs certificate data in env)
+#      - name: Add MacOS certs
+#        run: chmod +x ./scripts/build-binary/add-osx-cert.sh && ./scripts/build-binary/add-osx-cert.sh
+#        env:
+#          CERTIFICATE_OSX_APPLICATION: ${{ secrets.CERTIFICATE_OSX_APPLICATION }}
+#          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+#      - name: sign binary
+#        run: "codesign -f -s 'Developer ID Application: Markus Binsteiner (4Q559SZWTL)' dist/darwin19/bring"
       - name: Archive Mac OS X binary
         uses: actions/upload-artifact@v1
         with:
           name: bring
           path: dist/darwin19/bring
-      - name: Deploy to backblaze
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: aws s3 cp --endpoint-url=https://s3.us-west-002.backblazeb2.com --content-type binary/octet-stream dist/darwin19/bring s3://bring-dev/darwin/bring
+

@@ -1,6 +1,0 @@
-source:
-  type: gitlab_files
-  user_name: bring-indexes
-  repo_name: example-source-repo
-  files:
-    - some-files/file1.md

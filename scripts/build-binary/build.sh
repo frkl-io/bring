@@ -127,7 +127,7 @@ function install_requirements () {
 
     pip install git+https://gitlab.com/frkl/frkl.project_meta.git
 
-    pip install -U --upgrade-strategy eager --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi -e "${project_root}[all, build]"
+    pip install -U --upgrade-strategy eager --extra-index-url https://pkgs.frkl.io/frkl/dev --extra-index-url https://pkgs.frkl.dev/pypi "${project_root}[all, build]"
 
     deactivate
 

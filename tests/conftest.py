@@ -8,24 +8,22 @@
     https://pytest.org/latest/plugins.html
 """
 # import pytest
+import os
+from collections import Callable
+
 import pytest
+
 from bring.bring import Bring
-from bring.config.bring_config import BringConfig
-from freckles.core.freckles import Freckles
 
 
 @pytest.fixture
-def bring_obj() -> Bring:
+def bring() -> Bring:
 
-    # tingistry = Tingistries().create("freckles", modules=BRINGISTRY_PRELOAD_MODULES)
-    freckles = Freckles.get_default()
-    # tingistry_obj = freckles.tingistry
-
-    bring_config = BringConfig(freckles=freckles)
-
-    config = {"indexes": ["binaries"]}
-    bring_config.set_config(config)
-
-    bring = bring_config.get_bring()
-
+    bring = Bring()
     return bring
+
+@pytest.fixture
+def resource_folder() :
+
+    res_folder = os.path.join(os.path.dirname(__file__), "resources")
+    return res_folder

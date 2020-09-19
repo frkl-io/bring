@@ -1,40 +1,34 @@
 # -*- coding: utf-8 -*-
-import os
-from typing import Optional
+import atexit
+import sys
+from typing import Iterable
 
-from frkl.common import cli as DEFAULT_CLI
-from rich.console import Console
-from rich.style import Style
-from rich.theme import Theme
+import asyncclick as click
 
 
-bring_style = Style(color="black", blink=False, bold=False, bgcolor=None)
+# try:
+#     import uvloop
+#
+#     uvloop.install()
+# except Exception:
+#     pass
+from bring.bring import Bring
 
-# bring_code_theme = "friendly"
-bring_code_theme = "solarized-light"
+click.anyio_backend = "asyncio"
 
-LIGHT_THEME = Theme(
-    {
-        "title": Style.parse("bold bright_black"),
-        "key": Style.parse("bold grey35"),
-        "key2": Style.parse("italic"),
-        "value": Style.parse(""),
-    }
-)
-DARK_THEME = Theme(
-    {
-        "title": Style.parse("bold white"),
-        "key": Style.parse("bold yellow"),
-        "key2": Style.parse("italic"),
-        "value": Style.parse(""),
-    }
-)
-width = os.environ.get("CONSOLE_WIDTH", None)
-if width is not None:
-    _width: Optional[int] = int(width)
-else:
-    _width = None
 
-console = Console(theme=LIGHT_THEME, width=_width)
+@click.group()
+@click.pass_context
+async def cli(ctx):
 
-DEFAULT_CLI._console = console
+    ctx.obj = {}
+
+    ctx.obj["bring"] = Bring()
+
+
+from bring.interfaces.cli.explain import explain
+
+
+if __name__ == "__main__":
+    exit_code = cli(_anyio_backend="asyncio")  # pragma: no cover
+    sys.exit(exit_code)

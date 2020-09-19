@@ -1,1 +1,0 @@
-A *package* is the central object within *bring*. A package declaratively describes a set of files (or a single one), how to retrieve those files, and how to process them so that they end up in a predictable arrangement on a selected target, once installed.

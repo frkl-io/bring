@@ -9,9 +9,8 @@
             "exe_name": "bring",
             "project_slug": "bring",
             "project_main_module": "bring",
-            "project_short_description": "Package manager for files and file-sets.",
+            "project_short_description": "A package manager for generic files and file-sets.",
             "_template": "https://gitlab.com/frkl/frkl.python-project.git"
         }
-    },
-    "directory": ""
+    }
 }

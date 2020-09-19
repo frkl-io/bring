@@ -7,7 +7,7 @@
 
 # bring
 
-*Package manager for files and file-sets.*
+*A package manager for generic files and file-sets.*
 
 
 ## Description
@@ -15,22 +15,13 @@
 Documentation still to be done.
 
 
-## Links
-
- - [Documentation/Homepage](https://bring.frkl.io)
- - Code: [GitLab](https://gitlab.com/frkl/bring) / [Github mirror](https://github.com/frkl-io/bring)
- - [Issues](https://gitlab.com/frkl/bring/-/issues)
- - [Container repository](https://gitlab.com/frkl/bring/container_registry)
-
 ## Downloads
 
 ### Binaries
 
-  - development versions:
-
-    - [Linux](https://dl.frkl.sh/file/bring-dev/linux-gnu/bring)
-    - [Mac OS X](https://dl.frkl.sh/file/bring-dev/darwin/bring)  (not tested much)  
-    - [Windows](https://dl.frkl.sh/file/bring-dev/windows/bring.exe)  (not tested at all)
+  - [Linux](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/linux-gnu/bring)
+  - [Windows](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/windows/bring.exe)
+  - [Mac OS X](https://s3-eu-west-1.amazonaws.com/dev.dl.frkl.io/darwin/bring)
 
 
 # Development
@@ -88,10 +79,10 @@ For details (and other, minor targets), check the ``Makefile``.
 This project uses [cruft](https://github.com/timothycrosley/cruft) to apply updates to [the base Python project template](https://gitlab.com/frkl/template-python-project) to this repository. Check out it's documentation for more information.
 
 ``` console
-> cruft update
+cruft update
 # interactively approve changes, make changes if necessary
-> git add *
-> git commit -m "chore: updated project from template"
+git add *
+git commit -m "chore: updated project from template"
 ```
 
 

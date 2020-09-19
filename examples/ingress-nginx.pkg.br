@@ -1,0 +1,44 @@
+info:
+  homepage: https://kubernetes.github.io/ingress-nginx/
+  slug: NGINX Ingress Controller for Kubernetes
+  desc: |
+    The 'deploy' manifest for a NGINX Ingress controller.
+
+    Notes:
+      - tls-termination variants not supported currently
+  urls:
+    - https://github.com/kubernetes/ingress-nginx
+  issues: https://github.com/kubernetes/ingress-nginx/issues
+
+tags:
+  - kubernetes
+  - ingress
+  - nginx
+
+args:
+  provider:
+    doc: The provider to deploy to.
+    default: cloud
+    type: string
+
+pkg:
+#  url: https://github.com/kubernetes/ingress-nginx.git
+  use_commits_as_versions: False
+  type: github_files
+  user_name: kubernetes
+  repo_name: ingress-nginx
+  tag_filter: 'ingress-nginx-.*'
+  files:
+    - deploy/static/provider/${provider}/deploy.yaml
+
+#  template_values:
+#    provider:
+#      - cloud
+#      - baremetal
+#      - aws
+#      - do
+#
+#  transform:
+#    - path: deploy.yaml
+#      from: deploy/static/provider/${provider}/deploy.yaml
+

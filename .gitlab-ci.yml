@@ -30,9 +30,9 @@ include:
   - local: '/ci/gitlab/build/pkg.yml'
   - local: '/ci/gitlab/build/binary_linux.yml'
   - local: '/ci/gitlab/build/binary_windows.yml'
-  - local: '/ci/gitlab/release/binaries-backblaze.yml'
-  - local: '/ci/gitlab/release/container.yml'
-#  - local: '/ci/gitlab/release/update_index.yml'
+#  - local: '/ci/gitlab/release/binaries.yml'
+#  - local: '/ci/gitlab/release/container.yml'
+
 
 pages:
   extends: .bring_build_docs

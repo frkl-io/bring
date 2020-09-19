@@ -1,71 +1,26 @@
 site_name: bring
 repo_url: https://gitlab.com/frkl/bring
-theme:
-  name: material
-  custom_dir: docs/overrides
-  palette:
-   scheme: default
-  languate: en
-  features:
-    - tabs
-  font:
-    text: Roboto
-    code: Roboto Mono
-
+theme: material
 site_author: Markus Binsteiner
 docs_dir: docs
 site_dir: build/site
 
 markdown_extensions:
-- def_list
 - attr_list
 - admonition
 - codehilite:
     guess_lang: false
 - toc:
     permalink: true
-    toc_depth: 4
 - pymdownx.snippets:
     base_path: docs
-- pymdownx.highlight:
-    use_pygments: true
-- pymdownx.inlinehilite
-- pymdownx.superfences
 
+nav:
+- Home: index.md
+- Install: install.md
+- Usage: usage.md
+- API Documentation: api-documentation.md
 plugins:
 - search
 - macros:
    module_name: ci.docs
-- minify:
-    minify_html: true
-extra_css:
-  - stylesheets/extra.css
-
-extra:
-  social:
-    - icon: fontawesome/brands/gitlab
-      link: https://gitlab.com/frkl/bring
-    - icon: fontawesome/brands/github
-      link: https://github.com/frkl-io/bring
-
-nav:
-#- Home:
-#    - Welcome: index.md
-#    - About: about.md
-- Getting started:
-  - Overview: getting-started/overview.md
-  - Getting information: getting-started/information.md
-  - Installing packages: getting-started/installing-packages.md
-  - Creating a package: getting-started/creating-packages.md
-- Documentation:
-    - Overview: documentation/overview.md
-    - Installation: documentation/install.md
-    - Getting help: documentation/getting-help.md
-    - Packages:
-        Overview: documentation/packages/overview.md
-        Package description: documentation/packages/package-description.md
-        Package types: documentation/packages/package-types.md
-    - Indexes: documentation/indexes.md
-#    - Plugins:
-#        Mogrifiers: documentation/plugins/mogrifiers.md
-#- API Documentation: api-documentation.md
